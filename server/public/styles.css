@@ -1,0 +1,12 @@
+h1{
+    text-align: center;
+}
+
+#root{
+    padding: 30px;
+}
+
+.firstProduct {
+    height: 50%;
+    width: 15%;
+}
