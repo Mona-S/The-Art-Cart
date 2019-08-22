@@ -1,4 +1,5 @@
 import React from 'react';
+import ProductListItem from './product-list-item';
 
 class ProductDetails extends React.Component {
   constructor(props) {
@@ -12,10 +13,19 @@ class ProductDetails extends React.Component {
     fetch('/api/products.php?id=1')
       .then(response => response.json())
       .then(data => this.setState({ product: data }));
+
   }
 
   render() {
-    return (null);
+
+    return (
+      <ProductListItem key = {this.state.product.id}
+        id = {this.state.product.id}
+        name = {this.state.product.name}
+        price = {this.state.product.price}
+        image = {this.state.product.image}
+        shortDescription = {this.state.product.shortDescription}/>
+    );
   }
 }
 
