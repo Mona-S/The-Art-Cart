@@ -6,6 +6,13 @@ class ProductList extends React.Component {
     this.state = {
       products: []
     };
+    this.getProducts = this.getProducts.bind(this);
+  }
+
+  getProducts() {
+    fetch('/api/products.php')
+      .then(response => response.json())
+      .then(data => this.setState({ products: data }));
   }
 
   render() {
