@@ -6,6 +6,9 @@ require_once('./functions.php');
 
 set_exception_handler('error_handler');
 
+// http_response_code(500);
+// doStuff();
+
 $output = file_get_contents('./dummy-products-list.json');
 print($output);
 
