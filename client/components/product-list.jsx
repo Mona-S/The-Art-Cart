@@ -15,6 +15,10 @@ class ProductList extends React.Component {
       .then(data => this.setState({ products: data }));
   }
 
+  componentDidMount() {
+    this.getProducts();
+  }
+
   render() {
     return (
       <React.Fragment>
