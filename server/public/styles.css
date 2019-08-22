@@ -1,4 +1,4 @@
-.mb-4{
+.header {
     text-align: left;
     background-color: lightblue;
     height:25vh;   
@@ -11,7 +11,7 @@ body {
     width: 100vw;
 }
 
-.rounded{
+.logo{
     float:right;  
 }
 
