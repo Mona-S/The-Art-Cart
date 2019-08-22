@@ -1,0 +1,31 @@
+.header {
+    text-align: left;
+    background-color: lightblue;
+    height:25vh;   
+    font-size: 60px;
+    color:rgb(8, 8, 77);
+}
+
+body {
+    height: 100vh;
+    width: 100vw;
+}
+
+.logo{
+    float:right;  
+}
+
+#root{
+    padding: 15px;
+}
+
+.card {
+    display: inline-block;
+    margin-right: 80px;
+}
+
+.row {
+    display: inline-block;
+}
+
+
