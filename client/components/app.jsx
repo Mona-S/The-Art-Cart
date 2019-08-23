@@ -15,6 +15,13 @@ export default class App extends React.Component {
 
   }
 
+  setView(name, params) {
+    this.setState({ setView: {
+      name: name,
+      params: params
+    } });
+  }
+
   render() {
     return (
       <React.Fragment>
