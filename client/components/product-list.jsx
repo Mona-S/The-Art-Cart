@@ -28,7 +28,8 @@ class ProductList extends React.Component {
           name = {data.name}
           price = {data.price}
           image = {data.image}
-          shortDescription = {data.shortDescription}/>
+          shortDescription = {data.shortDescription}
+          setView={this.props.productView}/>
       );
     });
 

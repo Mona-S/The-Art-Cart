@@ -16,7 +16,7 @@ export default class App extends React.Component {
   }
 
   setView(name, params) {
-    this.setState({ setView: {
+    this.setState({ view: {
       name: name,
       params: params
     } });
@@ -26,7 +26,7 @@ export default class App extends React.Component {
     return (
       <React.Fragment>
         <Header></Header>
-        <ProductList></ProductList>
+        <ProductList productView={this.setView}></ProductList>
         <ProductDetails></ProductDetails>
       </React.Fragment>
     );
