@@ -7,7 +7,6 @@ set_error_handler('error_handler');
 startup();
 
 require_once('./db_connection.php');
-header('Content-Type: application/json');
 
 $query = "SELECT * FROM `products`";
 $result = mysqli_query($conn, $query);
