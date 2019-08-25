@@ -10,7 +10,7 @@ class ProductDetails extends React.Component {
   }
 
   componentDidMount() {
-    fetch('/api/products.php?id=1')
+    fetch('/api/products.php?id=' + this.props.view.params.id)
       .then(response => response.json())
       .then(data => this.setState({ product: data }));
 
