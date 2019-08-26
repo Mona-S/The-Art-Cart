@@ -24,6 +24,11 @@ export default class App extends React.Component {
     } });
   }
 
+  getCartItems() {
+    fetch('/api/cart.php')
+      .then(response => response.json());
+  }
+
   render() {
     if (this.state.view.name === 'catalog') {
       return (
