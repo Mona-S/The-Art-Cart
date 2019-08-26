@@ -32,7 +32,6 @@ export default class App extends React.Component {
   }
 
   componentDidMount() {
-    this.addToCart();
     this.getCartItems();
   }
 
@@ -62,8 +61,8 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'details') {
       return (
         <React.Fragment>
-          <Header></Header>
-          <ProductDetails productView={this.setView} params={this.state}></ProductDetails>
+          <Header cartItems={this.state.cart.length}></Header>
+          <ProductDetails productView={this.setView} params={this.state} cartAdd={this.addToCart}></ProductDetails>
         </React.Fragment>
       );
     }
