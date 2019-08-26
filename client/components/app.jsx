@@ -29,6 +29,10 @@ export default class App extends React.Component {
       .then(response => response.json());
   }
 
+  componentDidMount() {
+    this.getCartItems();
+  }
+
   render() {
     if (this.state.view.name === 'catalog') {
       return (
