@@ -1,9 +1,11 @@
 .header {
     text-align: left;
     background-color: lightblue;
-    height:26vh;   
+    height:15vh; 
+    width:100vw;  
     font-size: 60px;
     color:rgb(8, 8, 77);
+    display: inline-block;
 }
 
 body {
@@ -12,7 +14,8 @@ body {
 }
 
 .logo{
-    float:right;  
+    float:right; 
+    height:120px; 
 }
 
 #root{
@@ -26,6 +29,24 @@ body {
 
 .row {
     display: inline-block;
+}
+
+.cart {
+    display: inline-flex;
+    font-size: 25px;
+    float: right;
+    margin-top: 20px;
+    padding:20px;
+
+}
+
+.fa-shopping-cart{
+    display: inline-flex;
+    font-size: 25px;
+    float: right;
+  
+  
+
 }
 
 
