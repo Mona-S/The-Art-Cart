@@ -26,7 +26,8 @@ export default class App extends React.Component {
 
   getCartItems() {
     fetch('/api/cart.php')
-      .then(response => response.json());
+      .then(response => response.json())
+      .then(data => this.setState({ cart: data }));
   }
 
   componentDidMount() {
@@ -37,7 +38,7 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <React.Fragment>
-          <Header></Header>
+          <Header cartItems={this.state.cart}></Header>
           <ProductList productView={this.setView}></ProductList>
         </React.Fragment>
       );
