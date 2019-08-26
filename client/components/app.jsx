@@ -24,7 +24,6 @@ export default class App extends React.Component {
   }
 
   render() {
-    // console.log('hi', this.view.name);
     if (this.state.view.name === 'catalog') {
       return (
         <React.Fragment>
