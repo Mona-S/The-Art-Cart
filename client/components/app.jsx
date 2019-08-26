@@ -12,6 +12,7 @@ export default class App extends React.Component {
         params: {}
       }
     };
+    this.setView = this.setView.bind(this);
 
   }
 
@@ -23,18 +24,19 @@ export default class App extends React.Component {
   }
 
   render() {
-    if (this.view.name === 'catalog') {
+    // console.log('hi', this.view.name);
+    if (this.state.view.name === 'catalog') {
       return (
         <React.Fragment>
           <Header></Header>
           <ProductList productView={this.setView}></ProductList>
         </React.Fragment>
       );
-    } else if (this.view.name === 'details') {
+    } else if (this.state.view.name === 'details') {
       return (
         <React.Fragment>
           <Header></Header>
-          <ProductDetails productView={this.setView} params={this.state.view.params}></ProductDetails>
+          <ProductDetails productView={this.setView} params={this.state}></ProductDetails>
         </React.Fragment>
       );
     }
