@@ -55,21 +55,21 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length}></Header>
+          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
           <ProductList productView={this.setView}></ProductList>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length}></Header>
+          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
           <ProductDetails productView={this.setView} params={this.state} cartAdd={this.addToCart}></ProductDetails>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length}></Header>
+          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
           <CartSummary cartState={this.state.cart}></CartSummary>
         </React.Fragment>
       );
