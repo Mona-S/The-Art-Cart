@@ -7,9 +7,9 @@ function CartSummary(props) {
       <React.Fragment>Cart is Empty</React.Fragment>
     );
   }
-  const items = props.totalItems.map((item, index) => {
+  const items = props.cartState.map(item => {
     return (
-      <CartSummaryItem key={index}
+      <CartSummaryItem key={item.id}
         image= {item.image}
         name = {item.name}
         price = {item.price}
@@ -17,22 +17,23 @@ function CartSummary(props) {
     );
   });
 
-  const total = cartTotalPrice(props.totalItems);
+  const total = cartTotalPrice(props);
   return (
     <div className= "container">
       <button type="button" className="btn btn-outline-info"
-        onClick={() => this.props.productView('catalog', {})}>Back to Catalog</button>
+        onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
       <h3>My Cart</h3>
       <div>{items}</div>
-      <p>$ Total Price {(total / 100).toFixed(2)}</p>
+      <br></br>
+      <div className="totalPrice"><h5>Total Price ${(total / 100).toFixed(2)}</h5></div>
     </div>
   );
 }
 
-function cartTotalPrice(cartItems) {
+function cartTotalPrice(props) {
   let totalPrice = 0;
-  for (let i = 0; i < cartItems.length; i++) {
-    totalPrice += cartItems[i].price;
+  for (let i = 0; i < props.cartState.length; i++) {
+    totalPrice += props.cartState[i].price;
   }
   return totalPrice;
 }

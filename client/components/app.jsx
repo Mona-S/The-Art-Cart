@@ -70,7 +70,7 @@ export default class App extends React.Component {
       return (
         <React.Fragment>
           <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
-          <CartSummary cartState={this.state.cart}></CartSummary>
+          <CartSummary cartState={this.state.cart} cartView={this.setView}></CartSummary>
         </React.Fragment>
       );
     }
