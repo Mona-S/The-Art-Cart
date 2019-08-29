@@ -6,7 +6,7 @@ function Header(props) {
       <h2 className='header'> Wicked Sales
         <img src="/images/shoponline logo.png" className="logo" alt="logo"></img>
         <div className="cart"> {props.cartItems} Items
-          <i className="fas fa-shopping-cart"></i>
+          <i onClick={() => props.cartView('cart', {})} className="fas fa-shopping-cart"></i>
         </div>
       </h2>
     </React.Fragment>

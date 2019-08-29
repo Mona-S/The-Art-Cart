@@ -1,7 +1,7 @@
 .header {
     text-align: left;
     background-color: lightblue;
-    height:15vh; 
+    height:17vh; 
     width:100vw;  
     font-size: 60px;
     color:rgb(8, 8, 77);
@@ -44,9 +44,41 @@ body {
     display: inline-flex;
     font-size: 25px;
     float: right;
-  
-  
 
+}
+
+.summaryImage {
+    display: inline-block;
+    height: 48vh;
+    width: 25vw;
+}
+
+h3 {
+   text-align: center;
+   margin:5px;
+   padding:20px;
+   
+}
+
+.cartSummary {
+    display: inline-block;
+    width: 30vw;
+    height: 50vh;
+    margin: 5px;
+    border: 1px solid lightblue;
+    padding:10px;
+}
+
+.totalPrice {
+    border: 1px solid black;
+    height: 5vh;
+    width: 15vw;
+    padding: 10px;
+    background-color: lightblue;
+}
+
+.productName {
+    padding: 10px;
 }
 
 
