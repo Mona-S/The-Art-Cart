@@ -3,6 +3,7 @@ import Header from './header';
 import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
+import CheckOutForm from './check-out-form';
 
 export default class App extends React.Component {
   constructor(props) {
@@ -93,6 +94,13 @@ export default class App extends React.Component {
         <React.Fragment>
           <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
           <CartSummary cartState={this.state.cart} cartView={this.setView}></CartSummary>
+        </React.Fragment>
+      );
+    } else if (this.state.view.name === 'checkout') {
+      return (
+        <React.Fragment>
+          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
+          <CheckOutForm cartState={this.state.cart} cartView={this.setView} userInfo={this.placeOrder}></CheckOutForm>
         </React.Fragment>
       );
     }

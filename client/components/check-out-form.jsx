@@ -10,7 +10,7 @@ class CheckOutForm extends React.Component {
     };
     this.handleName = this.handleName.bind(this);
     this.handleCreditCard = this.handleCreditCard.bind(this);
-    this.handleShippingAddressInfo = this.handleShippingAddressInfo.bind(this);
+    this.handleShippingAddress = this.handleShippingAddress.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
     this.cartTotalPrice = this.cartTotalPrice.bind(this);
   }
@@ -23,8 +23,8 @@ class CheckOutForm extends React.Component {
     this.setState({ creditCardInfo: event.target.value });
   }
 
-  handleShippingAddressInfo(event) {
-    this.setState({ shippingAddressInfo: event.target.value });
+  handleShippingAddress(event) {
+    this.setState({ shippingAddress: event.target.value });
   }
 
   handleSubmit(event) {
@@ -32,9 +32,10 @@ class CheckOutForm extends React.Component {
   }
 
   cartTotalPrice(props) {
-    let totalPrice = 0;
-    for (let i = 0; i < props.cartState.length; i++) {
-      totalPrice += props.cartState[i].price;
+    var cartTotal = this.props.cartState;
+    var totalPrice = 0;
+    for (var i = 0; i < cartTotal.length; i++) {
+      totalPrice += cartTotal[i].price;
     }
     return totalPrice;
   }
@@ -43,32 +44,34 @@ class CheckOutForm extends React.Component {
     return (
       <React.Fragment>
         <h3>Checkout</h3>
+        <div>
+          <button type="button" className="btn btn-outline-info"
+            onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
+        </div>
+        <br></br>
         <p>Total ${(this.cartTotalPrice() / 100).toFixed(2)}</p>
 
         <form onSubmit={this.handleSubmit}>
-          <div className="form-group">
+          <div className="form-group form">
             <label >Name</label>
-            <input type="text" value="this.state.customerName" className="form-control"
-              onChange={this.handleName} placeholder="Name"></input>
+            <input type="text" value={this.state.customerName} className="form-control"
+              onChange={this.handleName} placeholder="Enter Name"></input>
           </div>
 
-          <div className="form-group">
+          <div className="form-group form">
             <label >Credit Card</label>
-            <input type="text" value="this.state.creditCardInfo" className="form-control"
-              onChange={this.handleCreditCard} placeholder="Credit Card"></input>
+            <input type="text" value={this.state.creditCardInfo} className="form-control"
+              onChange={this.handleCreditCard} placeholder="Enter Credit Card"></input>
           </div>
 
-          <div className="form-group">
+          <div className="form-group form">
             <label >Shipping Address</label>
-            <textarea value="this.state.shippingAddressInfo" className="form-control"
-              onChange={this.handleShippingAddressInfo} placeholder="Shipping Address" rows="3"></textarea>
+            <textarea value={this.state.shippingAddress} className="form-control"
+              onChange={this.handleShippingAddress} placeholder="Enter Shipping Address" rows="3"></textarea>
           </div>
 
           <div>
-            <button type="button" className="btn btn-outline-info"
-              onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
-
-            <button type="button" className="btn btn-outline-info">Checkout</button>
+            <button type="submit" className="btn btn-info">Place Your Order</button>
           </div>
 
         </form>
