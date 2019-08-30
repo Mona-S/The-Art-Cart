@@ -2,7 +2,7 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 function CartSummary(props) {
-  if (props.totalItems === 0) {
+  if (props.cartState === 0) {
     return (
       <React.Fragment>Cart is Empty</React.Fragment>
     );
