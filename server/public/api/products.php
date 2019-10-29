@@ -20,7 +20,9 @@ else {
   }
 }
 
-$query = "SELECT * FROM `products`" .$whereClause;
+$query = "SELECT products.id, products.name, products.price, products.short_description, images.image 
+FROM products 
+JOIN images ON products.id = images.product_id" .$whereClause;
 $result = mysqli_query($conn, $query);
 
 if(!mysqli_num_rows($result)){
