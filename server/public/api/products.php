@@ -21,7 +21,9 @@ else {
 }
 
 $query = "SELECT products.id, products.name, products.price, products.short_description, GROUP_CONCAT(images.image) as image 
-FROM products JOIN images ON products.id = images.product_id GROUP BY products.id" .$whereClause;
+FROM products JOIN images ON products.id = images.product_id 
+GROUP BY products.id" .$whereClause;
+
 $result = mysqli_query($conn, $query);
 
 if(!mysqli_num_rows($result)){
@@ -35,8 +37,10 @@ if(!$result){
 $output = array();
 
 while ($row = mysqli_fetch_assoc($result)) {
+  $row['image'] = explode(",", $row['image']);
   $output[] = $row;
 };
+
 print(json_encode($output));
 
 ?>
