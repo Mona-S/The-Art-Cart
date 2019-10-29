@@ -20,9 +20,8 @@ else {
   }
 }
 
-$query = "SELECT products.id, products.name, products.price, products.short_description, images.image 
-FROM products 
-JOIN images ON products.id = images.product_id" .$whereClause;
+$query = "SELECT products.id, products.name, products.price, products.short_description, GROUP_CONCAT(images.image) as image 
+FROM products JOIN images ON products.id = images.product_id GROUP BY products.id" .$whereClause;
 $result = mysqli_query($conn, $query);
 
 if(!mysqli_num_rows($result)){
