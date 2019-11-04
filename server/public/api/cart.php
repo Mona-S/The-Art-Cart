@@ -9,9 +9,9 @@ set_error_handler('error_handler');
 require_once('./db_connection.php');
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-  require ('./cart_add.php');
+  require_once('./cart_add.php');
 }else {
-  require ('./cart_get.php');
+  require_once('./cart_get.php');
 };
 
 
