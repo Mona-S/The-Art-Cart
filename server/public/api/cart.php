@@ -1,10 +1,19 @@
 <?php
 
 define('INTERNAL', true);
+
 require_once('./functions.php');
 session_start();
+
 set_error_handler('error_handler');
 require_once('./db_connection.php');
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+  require ('./cart_add.php');
+}else {
+  require ('./cart_get.php');
+};
+
 
 
 
