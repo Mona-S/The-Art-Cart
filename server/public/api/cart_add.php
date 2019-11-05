@@ -21,7 +21,11 @@ else{
 }
 
 $getProductPriceQuery = "SELECT * FROM cartItems
-JOIN cart ON cart.cartID = cartIems.cartID";
+JOIN cart ON cart.cartID = cartIems.cartID
+RIGHT JOIN products ON products.id = cartItems.productID
+WHERE products.id = {$id}";
+
+$result = mysqli_query($conn, $getProductPriceQuery);
 
 
 
