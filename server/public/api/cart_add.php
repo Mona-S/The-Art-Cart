@@ -1,4 +1,7 @@
 <?php
+
+use PHPMailer\PHPMailer\Exception;
+
 require_once('./functions.php');
 
 if (!defined('INTERNAL')){
@@ -40,7 +43,20 @@ while ($row = mysqli_fetch_assoc($result)) {
 $productData = $output;
 
 $transactionQuery = mysqli_query($conn, "START TRANSACTION");
+
 $cartInsert = "INSERT INTO cart SET created = NOW()";
+
+if(!$cartID){
+    $result = mysqli_query($conn, $cartInsert);
+    if(mysqli_affected_rows($conn) != 1){
+        throw new Exception('unable to retrieve cart');
+    }
+    $cartID = mysqli_insert_id($conn);
+    $_SESSION ['cartId'] = $cartID;
+}
+
+
+
 
 
 
