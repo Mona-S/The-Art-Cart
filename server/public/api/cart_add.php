@@ -10,21 +10,32 @@ if (!INTERNAL){
 $data = file_get_contents('php://input');
 $getBody = getBodyData($data);
 
-if($getBody->id) {
-    $id =$getBody->id;
+$id = $getBody->id;
 
-echo("id");
-echo($id);
-    
-    if(intval($id) < 1){
-        throw new Exception('id should be greater than 0');
-    }
-    if(gettype($id) !== "integer"){
-        throw new Exception('id should be a number');
-    }
-} else{
+if(gettype($id) !== "integer"){
+    throw new Exception('id should be a number');
+} else if(intval($id) < 1){
+    throw new Exception('id should be greater than 0');
+}else {
     throw new Exception('id is required');
 }
+
+
+// if($getBody->id) {
+//     $id =$getBody->id;
+
+// echo("id");
+// echo($id);
+    
+//     if(intval($id) < 1){
+//         throw new Exception('id should be greater than 0');
+//     }
+//     if(gettype($id) !== "integer"){
+//         throw new Exception('id should be a number');
+//     }
+// } else {
+//     throw new Exception('id is required');
+// }
 
 if($getBody->count){
     $count =$getBody->count;
@@ -78,7 +89,7 @@ if($cartID === false){
     
 }
 echo('cartid'. $cartID);
-
+$count = 1;
 $cartItemsInsertQuery = "INSERT INTO cartItems SET cartItems.count = {$count}, cartItems.productID = {$id},
 cartItems.price = {$price}, cartItems.added = NOW(), cartItems.cartID = {$cartID} 
 ON DUPLICATE KEY UPDATE cartItems.count = cartItems.count + {$count}";
