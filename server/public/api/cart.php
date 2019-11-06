@@ -1,18 +1,30 @@
 <?php
-
 define('INTERNAL', true);
-
 require_once('./functions.php');
 session_start();
 
-set_error_handler('error_handler');
+set_exception_handler('error_handler');
+startup();
+
 require_once('./db_connection.php');
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST'){
-  require_once('./cart_add.php');
-}else {
-  require_once('./cart_get.php');
-};
+$method = $_SERVER['REQUEST_METHOD'];
+if($method == 'POST'){
+  require_once('cart_add.php');
+} else if($method == 'GET'){
+  require_once('cart_get.php');
+} else{
+  http_response_code(404);
+  print(json_encode(['error' => 'Not Found', 'message' => 'cannot find $method /api/cart.php']));
+}
+
+?>
+
+<!-- // if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+//   require_once('./cart_add.php');
+// }else {
+//   require_once('./cart_get.php');
+// };
 
 
 
@@ -35,6 +47,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 //     'error' => 'Not Found',
 //     'message' => "Cannot $method /api/cart.php"
 //   ]));
-// }
+// } -->
 
-?>
+

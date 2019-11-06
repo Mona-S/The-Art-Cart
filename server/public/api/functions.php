@@ -2,7 +2,7 @@
 
 function error_handler($error) {
     $output = array(
-        "Sucesss" => "false",
+        "Success" => "false",
         "error" => $error -> getMessage(),
     );
 
@@ -16,10 +16,16 @@ function startup() {
     header('Content-Type: application/json');
 }
 
-function getBodyData() {
-    $results = file_get_contents('php://input');
-    $results = json_decode($results);
-    return json_encode($results);
+
+function getBodyData($json){
+    $phpObj = json_decode($json);
+    return $phpObj;
 }
+
+// function getBodyData() {
+//     $result = file_get_contents('php://input');
+//     $result = json_decode($result);
+//     return json_encode($result);
+// }
 
 ?>

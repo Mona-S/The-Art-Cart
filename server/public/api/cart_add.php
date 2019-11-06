@@ -1,20 +1,35 @@
 <?php
 
-use PHPMailer\PHPMailer\Exception;
-
 require_once('./functions.php');
 
-if (!defined('INTERNAL')){
-    exit("not about not allowing 1. direct access");
+if (!INTERNAL){
+    print("not allowing direct access");
+    exit();
 }
 
-$getBody = json_decode(getBodyData());
+$data = file_get_contents('php://input');
+$getBody = getBodyData($data);
 
-if(!$getBody->productID) {
-    throw new Exception('Invalid id');
+if($getBody->id) {
+    $id =$getBody->id;
+
+echo("id");
+echo($id);
+    
+    if(intval($id) < 1){
+        throw new Exception('id should be greater than 0');
+    }
+    if(gettype($id) !== "integer"){
+        throw new Exception('id should be a number');
+    }
+} else{
+    throw new Exception('id is required');
 }
 
-$id = $getBody->productID;
+if($getBody->count){
+    $count =$getBody->count;
+}
+
 if(empty($_SESSION['cartId'])){
     $cartID = false;
 }
@@ -22,64 +37,68 @@ else{
     $cartID = $_SESSION['cartId'];
 }
 
-$getProductPriceQuery = "SELECT * FROM cartItems
-JOIN cart ON cart.id = cartItems.cartID
-RIGHT JOIN products ON products.id = cartItems.productID
-WHERE products.id = {$id}";
+$getProductPriceQuery = "SELECT products.price FROM products WHERE products.id = {$id}";
+echo($getProductPriceQuery);
+$result1 = mysqli_query($conn, $getProductPriceQuery);
 
-$result = mysqli_query($conn, $getProductPriceQuery);
 
-if(!$result) {
+if(!$result1) {
     throw new Exception(mysqli_error($conn));
 }
 
-$output = array();
+$productData = [];
 
-while ($row = mysqli_fetch_assoc($result)) {
-    $id = $row['id'];
-    $output[] = $row;
+while ($row = mysqli_fetch_assoc($result1)) {
+    $productData[] = $row;
+    $price = $productData[0]['price'];
 };
 
-$productData = $output;
+if($productData === []){
+    throw new Exception('Not a valid product id:'. $id);
+}
 
-$transactionQuery = mysqli_query($conn, "START TRANSACTION");
+$transactionQuery = 'START TRANSACTION';
+$result2 = mysqli_query($conn, $transactionQuery);
+if(!$result2){
+    throw new Exception('transactionQuery error: '. mysqli_error($conn));
+}
 
-$cartInsert = "INSERT INTO cart SET created = NOW()";
-
-if(!$cartID){
-    $result = mysqli_query($conn, $cartInsert);
+if($cartID === false){
+    $cartInsertQuery = "INSERT INTO cart SET cart.created = NOW()";
+    echo('insertquery ' . $cartInsertQuery);
+    $result3 = mysqli_query($conn, $cartInsertQuery);
+    if(!$result3){
+        throw new Exception('cartInsertQuery error: '. mysqli_error($conn));
+    }
     if(mysqli_affected_rows($conn) != 1){
-        throw new Exception('unable to retrieve cart');
+        throw new Exception('only 1 row should be affected');
     }
     $cartID = mysqli_insert_id($conn);
     $_SESSION ['cartId'] = $cartID;
+    
+}
+echo('cartid'. $cartID);
+
+$cartItemsInsertQuery = "INSERT INTO cartItems SET cartItems.count = {$count}, cartItems.productID = {$id},
+cartItems.price = {$price}, cartItems.added = NOW(), cartItems.cartID = {$cartID} 
+ON DUPLICATE KEY UPDATE cartItems.count = cartItems.count + {$count}";
+
+echo($cartItemsInsertQuery);
+
+$result4 = mysqli_query($conn, $cartItemsInsertQuery);
+if(!$result4){
+    throw new Exception('cartItemsInsertQuery error: '. mysqli_error($conn));
 }
 
-$productData['productID'] = $id;
-$productData['cartID'] = $cartID;
-
-$cartItemsInsert = "INSERT INTO cartItems(productID, count, added, cartID)
-VALUES (". $id .", 1, NOW(), ". $cartID . ") ON DUPLICATE KEY UPDATE 
-count = count + 1";
-
-$fullResult = mysqli_query($conn, $cartItemsInsert);
-$count = 1;
 
 if(mysqli_affected_rows($conn) < 1){
-    mysqli_query($conn, "ROLLBACK");
-    throw new Exception('Something went wrong');
+    $rollback = 'ROLLBACK';
+    mysqli_query($conn, $rollback);
+    throw new Exception('normal');
+} else{
+    $commit = 'COMMIT';
+    mysqli_query($conn, $commit);
 }
-
-$commit = mysqli_query($conn, "COMMIT");
-print(json_encode($productData));
-
-
-
-
-
-
-
-
 
 
 
