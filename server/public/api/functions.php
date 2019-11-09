@@ -18,7 +18,7 @@ function startup() {
 
 
 function getBodyData($json){
-    $phpObj = json_decode($json);
+    $phpObj = json_decode($json); //,true//
     return $phpObj;
 }
 

@@ -10,13 +10,18 @@ if (!INTERNAL){
 $data = file_get_contents('php://input');
 $getBody = getBodyData($data);
 
+// $id = $getBody["id"];
 $id = $getBody->id;
+echo('getype '. gettype($id));
 
-if(gettype($id) !== "integer"){
+if(gettype($id) === "string"){ //use isnumeric//
     throw new Exception('id should be a number');
-} else if(intval($id) < 1){
+
+} 
+
+if(intval($id) < 1){
     throw new Exception('id should be greater than 0');
-}else {
+} else {
     throw new Exception('id is required');
 }
 

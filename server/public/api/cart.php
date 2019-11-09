@@ -18,9 +18,9 @@ if($method == 'POST'){
   print(json_encode(['error' => 'Not Found', 'message' => 'cannot find $method /api/cart.php']));
 }
 
-?>
 
-<!-- // if ($_SERVER['REQUEST_METHOD'] === 'POST'){
+
+ // if ($_SERVER['REQUEST_METHOD'] === 'POST'){
 //   require_once('./cart_add.php');
 // }else {
 //   require_once('./cart_get.php');
@@ -47,6 +47,7 @@ if($method == 'POST'){
 //     'error' => 'Not Found',
 //     'message' => "Cannot $method /api/cart.php"
 //   ]));
-// } -->
+// } 
+?>
 
 
