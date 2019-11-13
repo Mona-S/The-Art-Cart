@@ -12,7 +12,6 @@ class ProductDetails extends React.Component {
     fetch('/api/products.php?id=' + this.props.params.view.params.id)
       .then(response => response.json())
       .then(data => this.setState({ product: data }));
-
   }
 
   render() {
@@ -25,15 +24,15 @@ class ProductDetails extends React.Component {
 
           <div className="row">
             <div className="col-12 col-md-8">
-              <img src={this.state.product.image} className="card-img" alt="OneItem" />
+              <img src={this.state.product[0].image} className="card-img" alt="OneItem" />
             </div>
 
             <div className="col-6 col-md-4 short">
-              <h4 className="card-title">{this.state.product.name}</h4>
+              <h4 className="card-title">{this.state.product[0].name}</h4>
 
-              <p className="card-text badge badge-info">${(this.state.product.price / 100).toFixed(2)}</p>
-              <p className="card-text">{this.state.product.shortDescription}</p>
-              <button type="button" className="btn btn-info" onClick={() => this.props.cartAdd(this.state.product)}>Add to Cart </button>
+              <p className="card-text badge badge-info">${(this.state.product[0].price / 100).toFixed(2)}</p>
+              <p className="card-text">{this.state.product[0].shortDescription}</p>
+              <button type="button" className="btn btn-info" onClick={() => this.props.cartAdd(this.state.product.id)}>Add to Cart </button>
             </div>
 
           </div>

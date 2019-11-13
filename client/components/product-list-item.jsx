@@ -8,7 +8,7 @@ function ProductListItem(props) {
         <img src={props.image} alt="product1" className="card-img"/>
         <h4 className="card-title">{props.name}</h4>
         <p className="card-text">${(props.price / 100).toFixed(2)}</p>
-        <p className="card-text">{props.shortDescription}</p>
+        <p className="card-text">{props.short_description}</p>
       </div>
     </div>
   );

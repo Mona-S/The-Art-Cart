@@ -17,9 +17,10 @@ function startup() {
 }
 
 
-function getBodyData($json){
-    $phpObj = json_decode($json); //,true//
-    return $phpObj;
+function getBodyData(){
+    $getBody = file_get_contents('php://input');
+    $phpArray = json_decode($getBody,true); //,true//
+    return $phpArray;
 }
 
 // function getBodyData() {

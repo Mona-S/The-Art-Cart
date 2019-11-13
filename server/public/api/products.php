@@ -12,7 +12,7 @@ if(empty($_GET['id'])){
   $whereClause = '';
 } 
 else {
-  $whereClause = "WHERE id = " . $_GET['id'];
+  $whereClause = "WHERE products.id = " . $_GET['id'];
   $id = $_GET['id'];
 
   if(!is_numeric($_GET['id'] )){
@@ -20,9 +20,9 @@ else {
   }
 }
 
-$query = "SELECT products.id, products.name, products.price, products.short_description, GROUP_CONCAT(images.image) as image 
-FROM products JOIN images ON products.id = images.product_id 
-GROUP BY products.id" .$whereClause;
+$query = "SELECT products.id, products.name, products.price,GROUP_CONCAT(images.image) as image , products.short_description 
+FROM products JOIN images ON products.id = images.product_id " .$whereClause 
+ ." GROUP BY products.id " ;
 
 $result = mysqli_query($conn, $query);
 

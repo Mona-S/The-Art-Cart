@@ -2,49 +2,23 @@
 
 require_once('./functions.php');
 
-if (!INTERNAL){
+if(!INTERNAL){
     print("not allowing direct access");
     exit();
 }
 
-$data = file_get_contents('php://input');
-$getBody = getBodyData($data);
-
-// $id = $getBody["id"];
-$id = $getBody->id;
-echo('getype '. gettype($id));
-
-if(gettype($id) === "string"){ //use isnumeric//
-    throw new Exception('id should be a number');
-
-} 
-
-if(intval($id) < 1){
-    throw new Exception('id should be greater than 0');
-} else {
-    throw new Exception('id is required');
-}
+// $data = file_get_contents('php://input');
+$getBody = getBodyData();
+$id = intval($getBody["id"]);
 
 
-// if($getBody->id) {
-//     $id =$getBody->id;
+// if(gettype($id) === "string"){ //use isnumeric//
+//     throw new Exception('id should be a number');
+// } 
+// if(intval($id) <= 0){
+//     throw new Exception('id should be greater than 0');
+// } 
 
-// echo("id");
-// echo($id);
-    
-//     if(intval($id) < 1){
-//         throw new Exception('id should be greater than 0');
-//     }
-//     if(gettype($id) !== "integer"){
-//         throw new Exception('id should be a number');
-//     }
-// } else {
-//     throw new Exception('id is required');
-// }
-
-if($getBody->count){
-    $count =$getBody->count;
-}
 
 if(empty($_SESSION['cartId'])){
     $cartID = false;
@@ -54,7 +28,7 @@ else{
 }
 
 $getProductPriceQuery = "SELECT products.price FROM products WHERE products.id = {$id}";
-echo($getProductPriceQuery);
+
 $result1 = mysqli_query($conn, $getProductPriceQuery);
 
 
@@ -81,7 +55,7 @@ if(!$result2){
 
 if($cartID === false){
     $cartInsertQuery = "INSERT INTO cart SET cart.created = NOW()";
-    echo('insertquery ' . $cartInsertQuery);
+    
     $result3 = mysqli_query($conn, $cartInsertQuery);
     if(!$result3){
         throw new Exception('cartInsertQuery error: '. mysqli_error($conn));
@@ -93,13 +67,16 @@ if($cartID === false){
     $_SESSION ['cartId'] = $cartID;
     
 }
-echo('cartid'. $cartID);
-$count = 1;
-$cartItemsInsertQuery = "INSERT INTO cartItems SET cartItems.count = {$count}, cartItems.productID = {$id},
-cartItems.price = {$price}, cartItems.added = NOW(), cartItems.cartID = {$cartID} 
-ON DUPLICATE KEY UPDATE cartItems.count = cartItems.count + {$count}";
 
-echo($cartItemsInsertQuery);
+// $count = 1;
+// $cartItemsInsertQuery = "INSERT INTO cartItems SET cartItems.count = {$count}, cartItems.productID = {$id},
+// cartItems.price = {$price}, cartItems.added = NOW(), cartItems.cartID = {$cartID} 
+// ON DUPLICATE KEY UPDATE cartItems.count = cartItems.count + {$count}";
+
+$cartItemsInsertQuery = "INSERT INTO `cartItems` (`productID`, `count`, `price`, `added`, `cartID`)
+VALUES ($id, '1', $price, NOW(), $cartID) 
+ON DUPLICATE KEY UPDATE `count` = `count` + 1";
+
 
 $result4 = mysqli_query($conn, $cartItemsInsertQuery);
 if(!$result4){
