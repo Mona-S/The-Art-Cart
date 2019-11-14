@@ -1,16 +1,17 @@
 <?php
 
 require_once('./functions.php');
+require_once('./db_connection.php');
 
 if(!INTERNAL){
     print("not allowing direct access");
     exit();
 }
 
-// $data = file_get_contents('php://input');
 $getBody = getBodyData();
 $id = intval($getBody["id"]);
 
+echo($id);
 
 // if(gettype($id) === "string"){ //use isnumeric//
 //     throw new Exception('id should be a number');
@@ -46,6 +47,8 @@ while ($row = mysqli_fetch_assoc($result1)) {
 if($productData === []){
     throw new Exception('Not a valid product id:'. $id);
 }
+
+echo($id. $cartID);
 
 $transactionQuery = 'START TRANSACTION';
 $result2 = mysqli_query($conn, $transactionQuery);

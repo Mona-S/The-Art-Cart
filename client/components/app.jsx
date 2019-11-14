@@ -17,6 +17,8 @@ export default class App extends React.Component {
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
+    this.getCartItems = this.getCartItems.bind(this);
+    this.placeOrder = this.placeOrder.bind(this);
 
   }
 
@@ -30,7 +32,11 @@ export default class App extends React.Component {
   getCartItems() {
     fetch('/api/cart.php')
       .then(response => response.json())
-      .then(data => this.setState({ cart: data }));
+      .then(data => {
+        this.setState({ cart: data });
+        return data;
+      })
+      .catch(error => console.error('Error:', error));
   }
 
   componentDidMount() {
@@ -93,7 +99,7 @@ export default class App extends React.Component {
       return (
         <React.Fragment>
           <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
-          <CartSummary cartState={this.state.cart} cartView={this.setView}></CartSummary>
+          <CartSummary cartState={this.state.cart} cartView={this.setView} addToCart={this.addToCart}></CartSummary>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'checkout') {

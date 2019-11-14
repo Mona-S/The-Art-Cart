@@ -13,7 +13,7 @@ function CartSummary(props) {
         image= {item.image}
         name = {item.name}
         price = {item.price}
-        shortDescription={item.shortDescription}/>
+        shortDescription={item.short_description}/>
     );
   });
 
