@@ -7,9 +7,9 @@ function CartSummary(props) {
       <React.Fragment>Cart is Empty</React.Fragment>
     );
   }
-  const items = props.cartState.map(item => {
+  const items = props.cartState.map((item, index) => {
     return (
-      <CartSummaryItem key={item.id}
+      <CartSummaryItem key={index}
         image= {item.image}
         name = {item.name}
         price = {item.price}

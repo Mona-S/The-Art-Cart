@@ -43,11 +43,13 @@ export default class App extends React.Component {
     this.getCartItems();
   }
 
-  addToCart(product) {
+  addToCart(productId) {
     const req = {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(product)
+      body: JSON.stringify({
+        id: parseInt(productId)
+      })
     };
 
     fetch('/api/cart.php', req)

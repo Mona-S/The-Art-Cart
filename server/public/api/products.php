@@ -32,7 +32,10 @@ if(!mysqli_num_rows($result)){
 
 if(!$result){
   throw new Exception(mysqli_connect_error());
+} else if(!mysqli_num_rows($result) && !empty($GET['id'])){
+  throw new Exception('Invalid ID: ' .$GET['id']);
 }
+
 
 $output = array();
 
@@ -40,7 +43,14 @@ while ($row = mysqli_fetch_assoc($result)) {
   $row['image'] = explode(",", $row['image']);
   $output[] = $row;
 };
+// echo('here'.json_encode($output));
 
-print(json_encode($output));
+if(!empty($id)){
+  print(json_encode($output[0]));
+}
+else{
+  print(json_encode($output));
+}
+
 
 ?>

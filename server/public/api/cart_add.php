@@ -11,7 +11,7 @@ if(!INTERNAL){
 $getBody = getBodyData();
 $id = intval($getBody["id"]);
 
-echo($id);
+// echo($id);
 
 // if(gettype($id) === "string"){ //use isnumeric//
 //     throw new Exception('id should be a number');
@@ -70,11 +70,6 @@ if($cartID === false){
     $_SESSION ['cartId'] = $cartID;
     
 }
-
-// $count = 1;
-// $cartItemsInsertQuery = "INSERT INTO cartItems SET cartItems.count = {$count}, cartItems.productID = {$id},
-// cartItems.price = {$price}, cartItems.added = NOW(), cartItems.cartID = {$cartID} 
-// ON DUPLICATE KEY UPDATE cartItems.count = cartItems.count + {$count}";
 
 $cartItemsInsertQuery = "INSERT INTO `cartItems` (`productID`, `count`, `price`, `added`, `cartID`)
 VALUES ($id, '1', $price, NOW(), $cartID) 
