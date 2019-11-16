@@ -52,12 +52,14 @@ export default class App extends React.Component {
       })
     };
 
-    fetch('/api/cart.php', req)
-      .then(response => response.json())
-      .then(data => {
-        const allData = this.state.cart.concat(data);
-        this.setState({ cart: allData });
-      });
+    fetch('/api/cart.php', req);
+    // .then(response => { this.getCartItems(); });
+    // .then(response => response.json())
+    // .then(data => {
+    //   const allData = this.state.cart.concat(data);
+    //   this.setState({ cart: allData });
+    // });
+    this.getCartItems();
   }
 
   placeOrder(userInfo) {

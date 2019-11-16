@@ -36,7 +36,7 @@ function CartSummary(props) {
 function cartTotalPrice(props) {
   let totalPrice = 0;
   for (let i = 0; i < props.cartState.length; i++) {
-    totalPrice += props.cartState[i].price;
+    totalPrice += parseFloat(props.cartState[i].price);
   }
   return totalPrice;
 }

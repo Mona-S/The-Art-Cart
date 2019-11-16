@@ -14,7 +14,6 @@ if(empty($_SESSION['cartId'])) {
 } else{
     $cartId = intval($_SESSION['cartId']);
 }
-echo($cartId);
 
 $query = "SELECT a.count, a.price, b.name, b.short_description, c.image 
 FROM cartItems a, products b, images c 

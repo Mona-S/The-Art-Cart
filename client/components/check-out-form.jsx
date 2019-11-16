@@ -35,7 +35,7 @@ class CheckOutForm extends React.Component {
     var cartTotal = this.props.cartState;
     var totalPrice = 0;
     for (var i = 0; i < cartTotal.length; i++) {
-      totalPrice += cartTotal[i].price;
+      totalPrice += parseFloat(cartTotal[i].price);
     }
     return totalPrice;
   }
