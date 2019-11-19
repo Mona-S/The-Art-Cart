@@ -13,6 +13,7 @@ function CartSummary(props) {
         image= {item.image}
         name = {item.name}
         price = {item.price}
+        count = {item.count}
         shortDescription={item.short_description}/>
     );
   });
@@ -36,7 +37,7 @@ function CartSummary(props) {
 function cartTotalPrice(props) {
   let totalPrice = 0;
   for (let i = 0; i < props.cartState.length; i++) {
-    totalPrice += parseFloat(props.cartState[i].price);
+    totalPrice += parseFloat(props.cartState[i].price) * (props.cartState[i].count);
   }
   return totalPrice;
 }

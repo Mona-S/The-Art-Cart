@@ -13,11 +13,13 @@ export default class App extends React.Component {
         name: 'catalog',
         params: {}
       },
-      cart: []
+      cart: [],
+      cartLength: 0
     };
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
+    this.getCartLength = this.getCartLength.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
 
   }
@@ -29,13 +31,27 @@ export default class App extends React.Component {
     } });
   }
 
+  getCartLength() {
+    let cart = this.state.cart;
+    let cartArray = null;
+    if (cart.length > 0) {
+      for (let i = 0; i < cart.length; i++) {
+        cartArray += parseInt(cart[i].count);
+      }
+      this.setState({ cartLength: cartArray });
+    }
+  }
+
   getCartItems() {
     fetch('/api/cart.php')
       .then(response => response.json())
       .then(data => {
-        this.setState({ cart: data });
-        return data;
+        this.setState({ cart: data }, this.getCartLength);
       })
+      // return data;
+      // .then(cart => {
+      //   this.setState({ cart }, () => this.getCartLength(cart));
+      // })
       .catch(error => console.error('Error:', error));
   }
 
@@ -88,22 +104,22 @@ export default class App extends React.Component {
     if (this.state.view.name === 'catalog') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
+          <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
           <ProductList productView={this.setView}></ProductList>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'details') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
-          <ProductDetails productView={this.setView} params={this.state} cartAdd={this.addToCart}></ProductDetails>
+          <Header cartItems={this.state.cart.length} cartView={this.setView} getCartItems={this.getCartItems}></Header>
+          <ProductDetails productView={this.setView} params={this.state} cartAdd={this.addToCart} getCartItems={this.getCartItems}></ProductDetails>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'cart') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
-          <CartSummary cartState={this.state.cart} cartView={this.setView} addToCart={this.addToCart}></CartSummary>
+          <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
+          <CartSummary cartState={this.state.cart} cartView={this.setView} addToCart={this.addToCart} getCartItems={this.getCartItems}></CartSummary>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'checkout') {

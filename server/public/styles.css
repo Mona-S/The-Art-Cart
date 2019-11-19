@@ -49,8 +49,10 @@ body {
 
 .summaryImage {
     display: inline-block;
-    height: 48vh;
-    width: 25vw;
+    /* height: 48vh;
+    width: 25vw; */
+    height: 20vh;
+    width: 12vw;
 }
 
 h3 {
@@ -62,8 +64,10 @@ h3 {
 
 .cartSummary {
     display: inline-block;
-    width: 30vw;
-    height: 50vh;
+    /* width: 30vw;
+    height: 50vh; */
+    width: 50vw;
+    height: 40vh;
     margin: 5px;
     border: 1px solid lightblue;
     padding:10px;
