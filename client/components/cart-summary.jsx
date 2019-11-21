@@ -10,11 +10,15 @@ function CartSummary(props) {
   const items = props.cartState.map((item, index) => {
     return (
       <CartSummaryItem key={index}
+        id={item.productID}
         image= {item.image}
         name = {item.name}
         price = {item.price}
         count = {item.count}
-        shortDescription={item.short_description}/>
+        updateCart = {props.updateCart}
+        getCartItems = {props.getCartItems}
+        deleteFromCart = {props.deleteFromCart}/>
+      // shortDescription={item.short_description}/>
     );
   });
 
@@ -26,7 +30,7 @@ function CartSummary(props) {
       <h3>My Cart</h3>
       <div>{items}</div>
       <br></br>
-      <div className="totalPrice"><h5>Total Price ${(total / 100).toFixed(2)}</h5></div>
+      <div className="totalPrice"><h5>Order Total ${(total / 100).toFixed(2)}</h5></div>
       <br></br>
       <button type="button" className="btn btn-info"
         onClick={() => props.cartView('checkout', {})}>Checkout</button>

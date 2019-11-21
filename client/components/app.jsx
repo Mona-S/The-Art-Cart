@@ -68,14 +68,25 @@ export default class App extends React.Component {
       })
     };
 
-    fetch('/api/cart.php', req);
+    fetch('/api/cart.php', req)
     // .then(response => { this.getCartItems(); });
     // .then(response => response.json())
-    // .then(data => {
-    //   const allData = this.state.cart.concat(data);
-    //   this.setState({ cart: allData });
-    // });
-    this.getCartItems();
+      .then(() => {
+        const allData = this.state.cart.concat(productId);
+        this.setState({ cart: allData });
+      })
+      .finally(() => this.getCartItems());
+  }
+
+  updateCart(productId, count) {
+    fetch('/api/cart.php', {
+      method: 'PUT',
+      body: JSON.stringify({
+        id: parseInt(productId),
+        newCount: count
+      }),
+      headers: { 'Content-Type': 'application/json' }
+    });
   }
 
   placeOrder(userInfo) {
@@ -111,7 +122,7 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'details') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length} cartView={this.setView} getCartItems={this.getCartItems}></Header>
+          <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
           <ProductDetails productView={this.setView} params={this.state} cartAdd={this.addToCart} getCartItems={this.getCartItems}></ProductDetails>
         </React.Fragment>
       );
@@ -119,13 +130,13 @@ export default class App extends React.Component {
       return (
         <React.Fragment>
           <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
-          <CartSummary cartState={this.state.cart} cartView={this.setView} addToCart={this.addToCart} getCartItems={this.getCartItems}></CartSummary>
+          <CartSummary cartState={this.state.cart} cartView={this.setView} updateCart={this.updateCart} addToCart={this.addToCart} getCartItems={this.getCartItems}></CartSummary>
         </React.Fragment>
       );
     } else if (this.state.view.name === 'checkout') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cart.length} cartView={this.setView}></Header>
+          <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
           <CheckOutForm cartState={this.state.cart} cartView={this.setView} userInfo={this.placeOrder}></CheckOutForm>
         </React.Fragment>
       );

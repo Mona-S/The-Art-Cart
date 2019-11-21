@@ -85,6 +85,10 @@ h3 {
     padding: 10px;
 }
 
+.updateButton {
+    float: right;
+}
+
 .form {
     width: 40vw;
     padding:5px;
