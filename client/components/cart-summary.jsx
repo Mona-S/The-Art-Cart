@@ -2,9 +2,13 @@ import React from 'react';
 import CartSummaryItem from './cart-summary-item';
 
 function CartSummary(props) {
-  if (props.cartState === 0) {
+  if (props.cartState.length === 0) {
     return (
-      <React.Fragment>Cart is Empty</React.Fragment>
+      <React.Fragment>
+        <button type="button" className="btn btn-outline-info"
+          onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
+        <h2>Your Cart is Empty</h2>
+      </React.Fragment>
     );
   }
   const items = props.cartState.map((item, index) => {

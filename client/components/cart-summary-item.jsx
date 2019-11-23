@@ -19,9 +19,6 @@ class CartSummaryItem extends React.Component {
   increment() {
     let count = this.state.count;
     let newCount = ++count;
-    // console.log('count', count);
-    // console.log('newcount', newCount);
-    // console.log('product1', this.props.id);
     this.setState({ count: newCount });
   }
 
@@ -31,9 +28,6 @@ class CartSummaryItem extends React.Component {
     if (newCount < 0) {
       newCount = 0;
     }
-    // console.log('subcount', count);
-    // console.log('subnewcount', newCount);
-    // console.log('product2', this.props.id);
     this.setState({ count: newCount });
   }
 

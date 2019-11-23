@@ -17,8 +17,7 @@ $newCount = intval($getBody['newCount']);
 if($id < 1){
     throw new Exception('id must be greater than 0');
 }
-// echo($id);
-// echo($newCount);
+
 if($newCount == 0){
     $query = "DELETE FROM cartItems WHERE productID = {$id}";
     // $result = mysqli_query($conn, $query);
@@ -28,14 +27,15 @@ if($newCount == 0){
     //     }
 
     } else {
-        $query  = "UPDATE `cartItems` SET `cartItems`.`count` = {$newCount} WHERE  `cartItems`.`productID` = {$id}";
-        
-        
+        $query  = "UPDATE `cartItems` SET `cartItems`.`count` = {$newCount} 
+        WHERE  `cartItems`.`productID` = {$id}";
+            
     }
-    $result2 = mysqli_query($conn, $query);
-        if(!$result2){
-            throw new Exception("query error: ". $result2);
-        }
+$result2 = mysqli_query($conn, $query);
+
+if(!$result2){
+    throw new Exception("query error: ". $result2);
+}
     
 
 $commit = 'COMMIT';

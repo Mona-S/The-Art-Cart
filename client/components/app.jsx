@@ -34,12 +34,12 @@ export default class App extends React.Component {
   getCartLength() {
     let cart = this.state.cart;
     let cartArray = null;
-    if (cart.length > 0) {
-      for (let i = 0; i < cart.length; i++) {
-        cartArray += parseInt(cart[i].count);
-      }
-      this.setState({ cartLength: cartArray });
+    // if (cart.length > 0) {
+    for (let i = 0; i < cart.length; i++) {
+      cartArray += parseInt(cart[i].count);
     }
+    this.setState({ cartLength: cartArray });
+    // }
   }
 
   getCartItems() {
@@ -86,7 +86,8 @@ export default class App extends React.Component {
         newCount: count
       }),
       headers: { 'Content-Type': 'application/json' }
-    });
+    })
+      .finally(() => this.getCartItems());
   }
 
   placeOrder(userInfo) {
