@@ -6,21 +6,15 @@ class CheckOutForm extends React.Component {
     this.state = {
       'firstName': '',
       'lastName': '',
-      'creditCardInfo': '',
+      'creditCard': '',
       'address': '',
-      'city': '',
-      'state': '',
-      'zip': '',
       formErrors: {
         firstName: '',
         lastName: '',
         creditCard: '',
-        address: '',
-        city: '',
-        state: '',
-        zip: ''
+        address: ''
       },
-      emptySubmit: ''
+      blankSubmit: ''
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -30,32 +24,23 @@ class CheckOutForm extends React.Component {
 
   formValid(submission) {
     let errorsCopy = submission.formErrors;
-    let firstNameCopy = submission.firstName;
-    let lastNameCopy = submission.lastName;
-    let creditCardCopy = submission.creditCard;
-    let addressCopy = submission.address;
-    let cityCopy = submission.city;
-    let stateCopy = submission.state;
-    let zipCopy = submission.zip;
+    let firstNameData = submission.firstName;
+    let lastNameData = submission.lastName;
+    let creditCardData = submission.creditCard;
+    let addressData = submission.address;
     let valid = true;
 
     Object.values(errorsCopy).forEach(val => {
       val.length > 0 && (valid = false);
     });
 
-    if (!firstNameCopy) {
+    if (!firstNameData) {
       valid = false;
-    } else if (!lastNameCopy) {
+    } else if (!lastNameData) {
       valid = false;
-    } else if (!creditCardCopy) {
+    } else if (!creditCardData) {
       valid = false;
-    } else if (!addressCopy) {
-      valid = false;
-    } else if (!cityCopy) {
-      valid = false;
-    } else if (!stateCopy) {
-      valid = false;
-    } else if (!zipCopy) {
+    } else if (!addressData) {
       valid = false;
     }
 
@@ -71,12 +56,11 @@ class CheckOutForm extends React.Component {
       /^\d+$/
     );
 
+    const addressRegex = RegExp(
+      /^[0-9]{1,5} +[a-zA-Z0-9 -]{1,},? +[A-Z]{2} +[0-9]{5}$/);
+
     const letterRegex = RegExp(
       /^[A-Za-z]+$/
-    );
-
-    const zipRegex = RegExp(
-      /^[0-9]{5}(?:-[0-9]{4})?$/
     );
 
     switch (name) {
@@ -84,13 +68,13 @@ class CheckOutForm extends React.Component {
         formErrors.firstName =
           letterRegex.test(value)
             ? ''
-            : 'Input a valid name, letters only';
+            : 'Enter a valid name, letters only';
         break;
       case 'lastName':
         formErrors.lastName =
           letterRegex.test(value)
             ? ''
-            : 'Input a valid name, letters only';
+            : 'Enter a valid name, letters only';
         break;
       case 'creditCard':
         formErrors.creditCard =
@@ -100,27 +84,9 @@ class CheckOutForm extends React.Component {
         break;
       case 'address':
         formErrors.address =
-          value.length < 6
-            ? 'Mininum 6 characters required'
-            : '';
-        break;
-      case 'city':
-        formErrors.city =
-          letterRegex.test(value)
+          addressRegex.test(value)
             ? ''
-            : 'Input a valid city, letters only';
-        break;
-      case 'state':
-        formErrors.state =
-          letterRegex.test(value)
-            ? ''
-            : 'Input a valid state, letters only';
-        break;
-      case 'zip':
-        formErrors.zip =
-          zipRegex.test(value)
-            ? ''
-            : 'Input a valid zip code, numbers only';
+            : 'Enter a valid address';
         break;
     }
     this.setState({ formErrors, [name]: value });
@@ -129,6 +95,8 @@ class CheckOutForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let contact = this.state;
+    // console.log(this.formValid(this.state));
+    // console.log(this.formValid(event));
 
     if (this.formValid(this.state)) {
       this.props.placeOrder(contact, this.props.cart);
@@ -137,23 +105,17 @@ class CheckOutForm extends React.Component {
         lastName: null,
         creditCard: null,
         address: null,
-        city: null,
-        state: null,
-        zip: null,
         formErrors: {
           firstName: '',
           lastName: '',
           creditCard: '',
-          address: '',
-          city: '',
-          state: '',
-          zip: ''
+          address: ''
         },
-        earlySubmit: ''
+        blankSubmit: ''
       });
       this.props.setView('confirmation', {});
     } else {
-      this.setState({ earlySubmit: 'Please correctly fill out all fields before submitting.' });
+      this.setState({ blankSubmit: 'Please fill out all the required fields.' });
     }
   }
 
@@ -178,7 +140,7 @@ class CheckOutForm extends React.Component {
         <br></br>
         <p>Total ${(this.cartTotalPrice() / 100).toFixed(2)}</p>
 
-        <form onSubmit={this.handleSubmit}>
+        <form onClick={this.handleSubmit}>
           <div className="form-group form">
             <label htmlFor="firstName">First Name</label>
             <input id="firstName"
@@ -221,59 +183,21 @@ class CheckOutForm extends React.Component {
 
           <div className="form-group form">
             <label htmlFor="address">Address</label>
-            <input id="address"
+            <textarea id="address"
               type="text"
               name="address"
               className={formErrors.address.length > 0 ? 'error form-control' : 'form-control'}
               onChange={this.handleChange} rows="3"
-              placeholder="Shipping Address"></input>
+              placeholder="1234 Street Name, State Zip"></textarea>
             {formErrors.address.length > 0 && (
               <span className="invalidInput">{formErrors.address}</span>
             )}
           </div>
 
-          <div className="form-group form">
-            <label htmlFor="city">City</label>
-            <input id="city"
-              type="text"
-              name="city"
-              className={formErrors.city.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              placeholder="City"></input>
-            {formErrors.city.length > 0 && (
-              <span className="invalidInput">{formErrors.city}</span>
-            )}
-          </div>
-
-          <div className="form-group form">
-            <label htmlFor="state">State</label>
-            <input id="state"
-              type="text"
-              name="state"
-              className={formErrors.state.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              placeholder="State"></input>
-            {formErrors.state.length > 0 && (
-              <span className="invalidInput">{formErrors.state}</span>
-            )}
-          </div>
-
-          <div className="form-group form">
-            <label htmlFor="zip">Zip</label>
-            <input id="zip"
-              type="text"
-              name="zip"
-              className={formErrors.zip.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              placeholder="Zip"></input>
-            {formErrors.zip.length > 0 && (
-              <span className="invalidInput">{formErrors.zip}</span>
-            )}
-          </div>
-
           <div>
-            <button type="submit" className="btn btn-info">Place Your Order</button>
-            <div className="invalidInput">{this.state.earlySubmit}</div>
+            <button type="submit" className="btn btn-info"
+              onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Your Order</button>
+            <div className="invalidInput">{this.state.blankSubmit}</div>
           </div>
 
         </form>

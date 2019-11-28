@@ -4,22 +4,26 @@ import ProductList from './product-list';
 import ProductDetails from './product-details';
 import CartSummary from './cart-summary';
 import CheckOutForm from './check-out-form';
+import Confirmation from './confirmation';
+import LandingPage from './landing-page';
 
 export default class App extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       view: {
-        name: 'catalog',
+        name: 'landing-page',
         params: {}
       },
       cart: [],
       cartLength: 0
     };
+    this.alreadyUsed = 0;
     this.setView = this.setView.bind(this);
     this.addToCart = this.addToCart.bind(this);
     this.getCartItems = this.getCartItems.bind(this);
     this.getCartLength = this.getCartLength.bind(this);
+    this.deleteCart = this.deleteCart.bind(this);
     this.placeOrder = this.placeOrder.bind(this);
 
   }
@@ -90,11 +94,21 @@ export default class App extends React.Component {
       .finally(() => this.getCartItems());
   }
 
-  placeOrder(userInfo) {
-    const order = {
-      name: userInfo.customerName,
-      creditCard: userInfo.creditCardInfo,
-      shippingAddress: userInfo.shippingAddressInfo,
+  deleteCart() {
+    fetch('/api/cart_delete.php', {
+      method: 'PUT',
+      body: JSON.stringify(),
+      headers: { 'Content-Type': 'application/json' }
+    })
+      .finally(() => this.getCartItems());
+  }
+
+  placeOrder(contact, userInfo) {
+    let order = {
+      firstName: contact.firstName,
+      lastName: contact.lastName,
+      creditCard: contact.creditCardInfo,
+      shippingAddress: contact.shippingAddressInfo,
       cart: this.state.cart
     };
 
@@ -138,7 +152,21 @@ export default class App extends React.Component {
       return (
         <React.Fragment>
           <Header cartItems={this.state.cartLength} cartView={this.setView} getCartItems={this.getCartItems}></Header>
-          <CheckOutForm cartState={this.state.cart} cartView={this.setView} userInfo={this.placeOrder}></CheckOutForm>
+          <CheckOutForm cartState={this.state.cart} cartView={this.setView} placeOrder={this.placeOrder} deleteCart={this.deleteCart}></CheckOutForm>
+        </React.Fragment>
+      );
+    } else if (this.state.view.name === 'confirmation') {
+      return (
+        <React.Fragment>
+          <Header cartItems={this.state.cartLength} cartView={this.setView}></Header>
+          <Confirmation cartState={this.state.cart} cartView={this.setView}></Confirmation>
+        </React.Fragment>
+      );
+    } else if (this.state.view.name === 'landing-page') {
+      return (
+        <React.Fragment>
+          <Header cartItems={this.state.cartLength} cartView={this.setView}></Header>
+          <LandingPage cartView={this.setView}></LandingPage>
         </React.Fragment>
       );
     }
