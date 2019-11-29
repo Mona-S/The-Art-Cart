@@ -1,4 +1,5 @@
 import React from 'react';
+import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
 
 class CheckOutForm extends React.Component {
   constructor(props) {
@@ -14,12 +15,18 @@ class CheckOutForm extends React.Component {
         creditCard: '',
         address: ''
       },
-      blankSubmit: ''
+      blankSubmit: '',
+      modalOpen: true
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.cartTotalPrice = this.cartTotalPrice.bind(this);
     this.handleChange = this.handleChange.bind(this);
+    this.toggleModal = this.toggleModal.bind(this);
+  }
+
+  toggleModal() {
+    this.setState({ modalOpen: !this.state.modalOpen });
   }
 
   formValid(submission) {
@@ -132,6 +139,15 @@ class CheckOutForm extends React.Component {
     const { formErrors } = this.state;
     return (
       <React.Fragment>
+        <Modal isOpen={this.state.modalOpen}>
+          <ModalHeader>
+              Alert !<br></br>
+              Please do not use personal information
+          </ModalHeader>
+          <ModalFooter>
+            <Button onClick={this.toggleModal} color="info">OK</Button>
+          </ModalFooter>
+        </Modal>
         <h3>Checkout</h3>
         <div>
           <button type="button" className="btn btn-outline-info"

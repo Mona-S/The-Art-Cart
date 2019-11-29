@@ -1,17 +1,24 @@
 import React from 'react';
+import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
 
 class ProductDetails extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      product: null
+      product: null,
+      modalOpen: false
     };
+    this.toggleModal = this.toggleModal.bind(this);
   }
 
   componentDidMount() {
     fetch('/api/products.php?id=' + this.props.params.view.params.id)
       .then(response => response.json())
       .then(data => this.setState({ product: data }));
+  }
+
+  toggleModal() {
+    this.setState({ modalOpen: !this.state.modalOpen });
   }
 
   render() {
@@ -31,13 +38,24 @@ class ProductDetails extends React.Component {
               <p className="card-text badge badge-info">${(this.state.product.price / 100).toFixed(2)}</p>
               <h4 className="card-title">{this.state.product.name}</h4>
               <p className="card-text">{this.state.product.short_description}</p>
-              <button type="button" className="btn btn-info" onClick={() => this.props.cartAdd(this.state.product.id)}>Add to Cart </button>
+              <button type="button" className="btn btn-info" onClick={() => { this.toggleModal(); this.props.cartAdd(this.state.product.id); }}>Add to Cart </button>
             </div>
 
           </div>
           <div >
             <p className = "card-text">{this.state.product.longDescription}</p>
           </div>
+
+          <Modal isOpen={this.state.modalOpen}>
+            <ModalHeader>
+              {this.state.product.name} added to cart!
+            </ModalHeader>
+            <ModalFooter>
+              <Button onClick={this.toggleModal} color="info">Continue Shopping</Button>
+              <Button onClick={() => this.props.productView('cart', {})} color="primary">View Cart</Button>
+            </ModalFooter>
+          </Modal>
+
         </div>
       );
     }

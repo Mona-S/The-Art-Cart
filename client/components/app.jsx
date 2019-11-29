@@ -165,7 +165,7 @@ export default class App extends React.Component {
     } else if (this.state.view.name === 'landing-page') {
       return (
         <React.Fragment>
-          <Header cartItems={this.state.cartLength} cartView={this.setView}></Header>
+          <Header></Header>
           <LandingPage cartView={this.setView}></LandingPage>
         </React.Fragment>
       );
