@@ -1,11 +1,57 @@
 .header {
-    text-align: left;
-    background-color: lightblue;
+    text-align: center;
+    background-image:url("/images/theme-mainheader1.jpg");
+    /* background-color: rgb(173, 84, 196); */
     height:17vh; 
     width:100vw;  
     font-size: 60px;
-    color:rgb(8, 8, 77);
+    color: rgb(24, 24, 110);
     display: inline-block;
+    margin-bottom: 1px;
+    background-size: cover;
+
+}
+
+.mainpage {
+    background-image:url("/images/theme-main1.jpg");
+    height: 84vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+}
+
+.disclaimer {
+    background-color:white;
+    color: black;
+    border-radius: 20px;
+    font-size: 17px;
+    width:35vw;
+    height:35vh;
+    margin-left: 5vw;
+    border: 1px solid black ;
+    text-align: center;
+}
+
+.confirmation {
+    background-image:url("/images/theme-main1.jpg");
+}
+
+.emptyCart {
+    background-image:url("/images/theme-main1.jpg");
+    height: 82vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+}
+
+.emptyCartModal {
+    background-color:white;
+    color: black;
+    border-radius: 20px;
+    /* font-size: 20px; */
+    width: 30vw;
+    height: 10vh;
+    margin-left: 30vw;
+    border: 1px solid black ;
+    text-align: center;
 }
 
 body {
@@ -18,18 +64,42 @@ body {
     height:120px; 
 }
 
-#root{
-    padding: 15px;
-}
+/* #root{
+    padding: 20px;
+} */
 
-.card {
+.listItem {
     display: inline-block;
-    margin-right: 80px;
+    margin-right: 20px;
+    width:30vw;
+    border:1px solid black;
 }
 
 .row {
-    display: inline-block;
+    /* display: inline-block; */
+    width:100vw;
+    margin-top:20px;
+    text-align: center;
 }
+
+.rowImage{
+    width: 50vw;
+    height:20vh;
+    margin-top:20px; 
+    display:flex;
+    /* border:1px solid black; */
+}
+
+.rowProductDetails {
+    width: 80vw;
+    height:40vh;
+    display:inline-block;
+  
+}
+
+/* .listItem{
+    border:-1px solid black;
+} */
 
 .cart {
     display: inline-flex;
@@ -37,7 +107,34 @@ body {
     float: right;
     margin-top: 20px;
     padding:20px;
+}
 
+.add-to-cart-button {
+    background-color: blueviolet;
+}
+
+.itemDetails {
+    margin-top:10px;
+    margin-bottom: 10px;
+}
+
+.card-text{
+display:inline-block;
+}
+
+.card-data{
+    display:inline-block;
+    /* font-size:10px; */
+}
+
+.cardtextProduct{
+    width:40vw;
+}
+
+.container{
+    margin-top: 10px;
+    width:100vw;
+    height:80vh;
 }
 
 .fa-shopping-cart{
@@ -49,35 +146,43 @@ body {
 
 .summaryImage {
     display: inline-block;
-    /* height: 48vh;
-    width: 25vw; */
-    height: 20vh;
-    width: 12vw;
+    /* /* height: 48vh; */
+    width: 35vw; 
+    height: 30vh;
+    /* width: 30vw; */
+    /* margin:20px; */
 }
 
 h3 {
    text-align: center;
    margin:5px;
    padding:20px;
-   
 }
+
+
 
 .cartSummary {
     display: inline-block;
-    /* width: 30vw;
-    height: 50vh; */
-    width: 50vw;
-    height: 40vh;
-    margin: 5px;
-    border: 1px solid lightblue;
-    padding:10px;
+    /* flex-wrap: wrap; */
+    width: 40vw;
+    height: 55vh;
+    margin:10px;
+    border: 1px solid black;
+    text-align: center;  
+    margin-left: 15vw;
+}
+
+.divider {
+    width: 15px;
+    display: inline-block;
 }
 
 .totalPrice {
+    display: contents;
     border: 1px solid black;
-    height: 5vh;
+    height: 8vh;
     width: 15vw;
-    padding: 10px;
+    padding: 5px;
     background-color: lightblue;
 }
 
@@ -85,13 +190,61 @@ h3 {
     padding: 10px;
 }
 
-.updateButton {
-    float: right;
+.card-box{
+    width:50px;
+    font-size: 20px;
+    text-align: center;
+    display: inline-block;
 }
 
-.form {
+.summaryButton{
+    /* display: flex; */
+    height: 30px;
+    text-align: center; 
+}
+.updatedeleteButton {
+    display: inline-block;
+    
+}
+
+.myCart {
+    font-size: 20px;
+    padding: 10px;
+
+}
+
+.confirmation {
+    background-image:url("/images/theme-main1.jpg");
+    height: 84vh;
+    width: 100vw;
+    background-repeat: no-repeat;
+
+}
+
+.orderNumber {
+    background-color:white;
+    color: black;
+    border-radius: 20px;
+    font-size: 20px;
+    width: 30vw;
+    height: 30vh;
+    margin-left: 30vw;
+    border: 1px solid black ;
+    text-align: center;
+}
+
+.form, .checkoutPage{
     width: 40vw;
     padding:5px;
+    margin-left: 90px;
+    /* text-align: center; */
+
+}
+
+
+
+.orderTotal {
+    font-size: 30px;
 }
 
 

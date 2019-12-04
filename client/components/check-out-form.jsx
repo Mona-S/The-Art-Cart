@@ -142,82 +142,84 @@ class CheckOutForm extends React.Component {
         <Modal isOpen={this.state.modalOpen}>
           <ModalHeader>
               Alert !<br></br>
-              Please do not use personal information
+              Please be informed that details provided here are not stored in any systems.
+              However, please refrain from providing personal information in this page.
           </ModalHeader>
           <ModalFooter>
             <Button onClick={this.toggleModal} color="info">OK</Button>
           </ModalFooter>
         </Modal>
         <h3>Checkout</h3>
-        <div>
-          <button type="button" className="btn btn-outline-info"
-            onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
-        </div>
-        <br></br>
-        <p>Total ${(this.cartTotalPrice() / 100).toFixed(2)}</p>
-
-        <form onClick={this.handleSubmit}>
-          <div className="form-group form">
-            <label htmlFor="firstName">First Name</label>
-            <input id="firstName"
-              type="text"
-              name="firstName"
-              className={formErrors.firstName.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              placeholder="First Name"></input>
-            {formErrors.firstName.length > 0 && (
-              <span className="invalidInput">{formErrors.firstName}</span>
-            )}
-          </div>
-
-          <div className="form-group form">
-            <label htmlFor="lastName">Last Name</label>
-            <input id="lastName"
-              type="text"
-              name="lastName"
-              className={formErrors.lastName.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              placeholder="Last Name"></input>
-            {formErrors.lastName.length > 0 && (
-              <span className="invalidInput">{formErrors.lastName}</span>
-            )}
-          </div>
-
-          <div className="form-group form">
-            <label htmlFor="creditCard">Credit Card</label>
-            <input id="creditCard"
-              type="text"
-              name="creditCard"
-              className={formErrors.creditCard.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange}
-              maxLength="16"
-              placeholder="xxxxxxxxxxxxxxxx"></input>
-            {formErrors.creditCard.length > 0 && (
-              <span className="invalidInput">{formErrors.creditCard}</span>
-            )}
-          </div>
-
-          <div className="form-group form">
-            <label htmlFor="address">Address</label>
-            <textarea id="address"
-              type="text"
-              name="address"
-              className={formErrors.address.length > 0 ? 'error form-control' : 'form-control'}
-              onChange={this.handleChange} rows="3"
-              placeholder="1234 Street Name, State Zip"></textarea>
-            {formErrors.address.length > 0 && (
-              <span className="invalidInput">{formErrors.address}</span>
-            )}
-          </div>
-
+        <div className="checkoutPage">
           <div>
-            <button type="submit" className="btn btn-info"
-              onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Your Order</button>
-            <div className="invalidInput">{this.state.blankSubmit}</div>
+            <button type="button" className="btn btn-outline-info"
+              onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
           </div>
+          <br></br>
+          <p className="orderTotal">Order Total ${(this.cartTotalPrice() / 100).toFixed(2)}</p>
 
-        </form>
+          <form onClick={this.handleSubmit}>
+            <div className="form-group form">
+              <label htmlFor="firstName">First Name</label>
+              <input id="firstName"
+                type="text"
+                name="firstName"
+                className={formErrors.firstName.length > 0 ? 'error form-control' : 'form-control'}
+                onChange={this.handleChange}
+                placeholder="First Name"></input>
+              {formErrors.firstName.length > 0 && (
+                <span className="invalidInput">{formErrors.firstName}</span>
+              )}
+            </div>
 
+            <div className="form-group form">
+              <label htmlFor="lastName">Last Name</label>
+              <input id="lastName"
+                type="text"
+                name="lastName"
+                className={formErrors.lastName.length > 0 ? 'error form-control' : 'form-control'}
+                onChange={this.handleChange}
+                placeholder="Last Name"></input>
+              {formErrors.lastName.length > 0 && (
+                <span className="invalidInput">{formErrors.lastName}</span>
+              )}
+            </div>
+
+            <div className="form-group form">
+              <label htmlFor="creditCard">Credit Card</label>
+              <input id="creditCard"
+                type="text"
+                name="creditCard"
+                className={formErrors.creditCard.length > 0 ? 'error form-control' : 'form-control'}
+                onChange={this.handleChange}
+                maxLength="16"
+                placeholder="xxxxxxxxxxxxxxxx"></input>
+              {formErrors.creditCard.length > 0 && (
+                <span className="invalidInput">{formErrors.creditCard}</span>
+              )}
+            </div>
+
+            <div className="form-group form">
+              <label htmlFor="address">Address</label>
+              <textarea id="address"
+                type="text"
+                name="address"
+                className={formErrors.address.length > 0 ? 'error form-control' : 'form-control'}
+                onChange={this.handleChange} rows="3"
+                placeholder="1234 Street Name, State Zip"></textarea>
+              {formErrors.address.length > 0 && (
+                <span className="invalidInput">{formErrors.address}</span>
+              )}
+            </div>
+
+            <div>
+              <button type="submit" className="btn btn-info"
+                onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Your Order</button>
+              <div className="invalidInput">{this.state.blankSubmit}</div>
+            </div>
+
+          </form>
+        </div>
       </React.Fragment>
 
     );

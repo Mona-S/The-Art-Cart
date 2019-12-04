@@ -59,21 +59,26 @@ class CartSummaryItem extends React.Component {
     return (
       <React.Fragment>
         <div className="cartSummary">
-          <img src={this.props.image} alt="product1" className="summaryImage"/>
           <h4 className="card-title productName">{this.props.name}</h4>
+          <img src={this.props.image} alt="product1" className="summaryImage"/>
           {/* <i className="fas fa-plus-square"></i> */}
-          <button type="button" className="btn btn-success" onClick={this.increment}>+</button>
-          {/* <p className="card-text"> {this.props.count}</p> */}
-          <p className="card-text"> {this.state.count}</p>
-          <button type="button" className="btn btn-info updateButton" onClick={this.handleUpdateCallBack}>Update</button>
-          {/* <i className="fas fa-minus-square"></i> */}
-          <button type="button" className="btn btn-danger" onClick={this.decrement}>-</button>
+          <p className="card-data">Item Price ${(this.props.price / 100).toFixed(2)}</p>
+          <div className="summaryButton">
+            <button type="button" className="btn btn-success" onClick={this.increment}>+</button>
+            {/* <p className="card-text"> {this.props.count}</p> */}
+            <p className="card-box">  {this.state.count}</p>
+            {/* <i className="fas fa-minus-square"></i> */}
+            <button type="button" className="btn btn-danger" onClick={this.decrement}>-</button>
+
+          </div>
           <br></br>
-          <br></br>
-          <button type="button" className="btn btn-danger" onClick={this.toggleModal}>Delete</button>
-          <p className="card-text">Item Price ${(this.props.price / 100).toFixed(2)}</p>
-          <p className="card-text">SubTotal $ {parseFloat((this.props.price / 100).toFixed(2) * (this.props.count))}</p>
-          <p className="card-text">{this.props.shortDescription}</p>
+          <div className="updatedeleteButton">
+            <button type="button" className="btn btn-info updateButton" onClick={this.handleUpdateCallBack}>Update</button>
+            <div className="divider"></div>
+            <button type="button" className="btn btn-danger deleteButton" onClick={this.toggleModal}>Delete</button>
+          </div>
+          {/* <p className="card-data">SubTotal $ {parseFloat((this.props.price / 100).toFixed(2) * (this.props.count))}</p> */}
+          {/* <p className="card-data">{this.props.shortDescription}</p> */}
 
           <Modal isOpen={this.state.modalOpen}>
             <ModalHeader>

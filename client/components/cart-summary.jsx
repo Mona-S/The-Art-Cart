@@ -5,9 +5,11 @@ function CartSummary(props) {
   if (props.cartState.length === 0) {
     return (
       <React.Fragment>
-        <button type="button" className="btn btn-outline-info"
-          onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
-        <h2>Your Cart is Empty</h2>
+        <div className="emptyCart">
+          <button type="button" className="btn btn-info"
+            onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
+          <h3 className="emptyCartModal">Your Cart is Empty</h3>
+        </div>
       </React.Fragment>
     );
   }
@@ -31,11 +33,9 @@ function CartSummary(props) {
     <div className= "container">
       <button type="button" className="btn btn-outline-info"
         onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
-      <h3>My Cart</h3>
+      <h2 className="myCart">Cart Summary</h2>
       <div>{items}</div>
-      <br></br>
       <div className="totalPrice"><h5>Order Total ${(total / 100).toFixed(2)}</h5></div>
-      <br></br>
       <button type="button" className="btn btn-info"
         onClick={() => props.cartView('checkout', {})}>Checkout</button>
     </div>
