@@ -142,14 +142,15 @@ class CheckOutForm extends React.Component {
         <Modal isOpen={this.state.modalOpen}>
           <ModalHeader>
               Alert !<br></br>
-              Please be informed that details provided here are not stored in any systems.
-              However, please refrain from providing personal information in this page.
+              Please do not enter your personal information
+            {/* Please be informed that details provided here are not stored in any systems.
+              However, please refrain from providing personal information in this page. */}
           </ModalHeader>
           <ModalFooter>
             <Button onClick={this.toggleModal} color="info">OK</Button>
           </ModalFooter>
         </Modal>
-        <h3>Checkout</h3>
+        <h4 className="checkoutTitle">Checkout</h4>
         <div className="checkoutPage">
           <div>
             <button type="button" className="btn btn-outline-info"
