@@ -142,7 +142,7 @@ class CheckOutForm extends React.Component {
         <Modal isOpen={this.state.modalOpen}>
           <ModalHeader>
               Alert !<br></br>
-              Please do not enter your personal information
+              Please do not enter your personal information.
             {/* Please be informed that details provided here are not stored in any systems.
               However, please refrain from providing personal information in this page. */}
           </ModalHeader>
@@ -214,8 +214,8 @@ class CheckOutForm extends React.Component {
             </div>
 
             <div>
-              <button type="submit" className="btn btn-info"
-                onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Your Order</button>
+              <button type="submit" className="placeOrderButton"
+                onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Order</button>
               <div className="invalidInput">{this.state.blankSubmit}</div>
             </div>
 

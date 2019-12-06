@@ -40,6 +40,7 @@
     border: 1px solid black ;
     text-align: center;
     font-family: 'Ubuntu', sans-serif;
+    
 }
 
 .confirmation {
@@ -56,7 +57,7 @@
     border-radius: 20px;
     font-size: 20px;
     width: 30vw;
-    height: 30vh;
+    height: 25vh;
     margin-left: 35vw;
     border: 1px solid black ;
     text-align: center;
@@ -117,7 +118,7 @@ body {
 .rowImage{
     width: 50vw;
     /* height:20vh; */
-    margin-top:20px; 
+    margin-top: 40px; 
     display:flex;
     /* border:1px solid black; */
 }
@@ -126,6 +127,7 @@ body {
     width: 80vw;
     height:40vh;
     display:inline-block;
+    margin-top: 25px; 
   
 }
 
@@ -143,10 +145,14 @@ body {
     font-family: 'Ubuntu', sans-serif;
 }
 
-.add-to-cart-button {
-    background-color: rgb(24, 24, 110);
+.add-to-cart-button, .checkoutButton, .placeOrderButton{
+    background-color: rgb(47, 47, 112);
     color: white;
     font-family: 'Ubuntu', sans-serif;
+    border-radius: 6px;
+    font-size: 20px;
+    padding: 7px;
+    width: 9vw;
 }
 
 .itemDetails {
@@ -182,12 +188,14 @@ display:inline-block;
 }
 
 .summaryImage {
-    display: inline-block;
+    display: block;
     /* /* height: 48vh; */
-    width: 35vw; 
+    width: 25vw; 
     height: 30vh;
     /* width: 30vw; */
     /* margin:20px; */
+    text-align: center;
+    margin-left: 7vw;
 }
 
 h3 {
@@ -276,6 +284,7 @@ h3 {
     border-radius: 4px;
     background-color: lightblue;
     font-family: 'Ubuntu', sans-serif;
+    margin-bottom: 15px;
 }
 
 .invalidInput {
@@ -291,4 +300,269 @@ h3 {
 
 .carouselColor{
     background-color: black;
+}
+
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+    .mainpage {
+        height: 86vh;
+        width: 100vw; 
+        background-size: cover;
+       
+    }
+
+    .disclaimer {
+        width: 48vw;
+        height: 30vh;
+    }
+
+    .header {
+        height: 14vh;
+        /* width: vw; */
+    }
+
+    .emptyCart {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .emptyCartModal {
+        width: 38vw;
+        height: 7vh;
+        margin-left: 31vw;
+    }
+
+    .confirmation {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .orderNumber {
+        width: 55vw;
+        height: 18vh;
+        margin-left: 25vw;
+        font-size: 15px;
+    }
+
+    .orderTotal {
+        width: 28vw;
+    }
+
+    .add-to-cart-button, .checkoutButton, .placeOrderButton {
+        width: 25vw;
+    }
+
+
+
+}
+
+@media screen and (min-width: 1024px) {
+}
+
+@media screen and (min-width: 376px) and (max-width: 667px) {
+
+    .header {
+        height:20vh; 
+        width:100vw;  
+        font-size: 30px;
+        color: rgb(24, 24, 110);
+        margin-bottom: 1px;
+        background-size: cover;  
+    }
+    
+    .headerTitle {
+        font-size: 40px;
+        margin-top: 20px;
+    }
+
+    .logo {
+        float: left; 
+        height: 75px; 
+    }
+
+    .cart {      
+        font-size: 19px;   
+        margin-top: 10px;
+        padding:10px;
+        margin-right: 10px;
+        
+    }
+    
+    .mainpage {
+        background-size: cover;
+        height: 80vh;
+       
+    }
+
+    .disclaimer {
+        width: 55vw;
+        height: 55vh;
+        font-size: 10px;
+    }
+
+    .agreeButton {
+        font-size: 30px;
+    }
+
+    .emptyCart {
+        background-size: cover;
+        height: 80vh;
+    }
+
+    .emptyCartModal {
+        width: 35vw;
+        height: 15vh;
+        margin-left: 32vw;
+        font-size: 20px;
+    }
+
+    .form, .checkoutPage{
+        width: 40vw;
+        padding: 1px;
+        margin-left: 70px;
+    }
+    
+    .orderTotal {
+        font-size: 15px;
+        margin: 0px;
+        /* border: 1px solid black; */
+        width: 25vw;
+        margin-bottom: 15px;
+    }
+    
+    .checkoutTitle {
+        font-size: 20px;
+    }
+
+    .add-to-cart-button, .checkoutButton, .placeOrderButton {
+        width: 17vw;
+        font-size: 15px;
+    }
+
+    .confirmation {
+        background-size: cover;
+        height: 80vh;
+    }
+
+    .orderNumber {
+        width: 48vw;
+        height: 45vh;
+        margin-left: 25vw;
+        /* font-size: 1px; */
+    }
+
+    .orderModal1 {
+        font-size: 18px;
+    }
+
+    .orderModal2 {
+        font-size: 18px;
+    }
+}
+
+@media screen and (max-width: 375px) {
+
+    .header {
+        height: 14vh; 
+        width:100vw;  
+        font-size: 20px;
+        /* color: rgb(24, 24, 110); */
+        /* margin-bottom: 1px; */
+        background-size: cover;  
+    }
+    
+    .headerTitle {
+        font-size: 33px;
+        /* margin-top: 20px; */
+    }
+
+    .logo {
+        float: left; 
+        height: 80px; 
+    }
+
+    .cart {      
+        font-size: 19px;   
+        margin-top: 25px;
+        padding: 10px;
+        margin-right: 10px;
+        
+    }
+    
+    .mainpage {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .disclaimer {
+        width: 68vw;
+        height: 36vh;
+        font-size: 12px;
+    }
+
+    .emptyCart {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .emptyCartModal {
+        width: 50vw;
+        height: 5vh;
+        margin-left: 25vw;
+        font-size: 17px;
+        margin-top: 15px;
+    }
+
+    .confirmation {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .orderNumber {
+        width: 55vw;
+        height: 18vh;
+        margin-left: 25vw;
+        font-size: 15px;
+    }
+
+    .orderTotal {
+        width: 50vw;
+        font-size: 17px;
+    }
+
+    .add-to-cart-button, .checkoutButton, .placeOrderButton {
+        width: 30vw;
+        font-size: 17px;
+    }
+
+    .checkoutTitle {
+        font-size: 20px;
+    }
+
+    .form, .checkoutPage{
+        width: 70vw;
+        padding: 1px;
+        margin-left: 20px;
+    }
+
+    .confirmation {
+        background-size: cover;
+        height: 86vh;
+    }
+
+    .orderNumber {
+        width: 62vw;
+        height: 25vh;
+        margin-left: 20vw;
+        /* font-size: 1px; */
+        margin-top: 10px;
+    }
+
+    .orderModal1 {
+        font-size: 15px;
+    }
+
+    .orderModal2 {
+        font-size: 15px;
+    }
+       
 }
