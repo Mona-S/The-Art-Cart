@@ -37,9 +37,10 @@ class ProductDetails extends React.Component {
 
             </div>
 
-            <div className="col-6 col-md-4 short rowProductDetails">
+            {/* <div className="col-6 col-md-4 short rowProductDetails"> */}
+            <div className="short rowProductDetails">
               {/* <p className="card-text badge badge-info">${(this.state.product.price / 100).toFixed(2)}</p> */}
-              <h4 className="card-title">{this.state.product.name}</h4>
+              <p className="card-title productTitle">{this.state.product.name}</p>
               <b>${(this.state.product.price / 100).toFixed(2)}</b>
               <br></br>
               <br></br>

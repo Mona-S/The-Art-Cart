@@ -34,8 +34,8 @@ class ProductList extends React.Component {
     });
 
     return (
-      <div className="container">
-        <div className="row">
+      <div className="containerCatalog">
+        <div className="rowCatalog">
           {products}
         </div>
       </div>

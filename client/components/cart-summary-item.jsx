@@ -59,7 +59,7 @@ class CartSummaryItem extends React.Component {
     return (
       <React.Fragment>
         <div className="cartSummary">
-          <h4 className="card-title productName">{this.props.name}</h4>
+          <h5 className="card-title productName">{this.props.name}</h5>
           <img src={this.props.image} alt="product1" className="summaryImage"/>
           {/* <i className="fas fa-plus-square"></i> */}
           <p className="card-data">Item Price ${(this.props.price / 100).toFixed(2)}</p>

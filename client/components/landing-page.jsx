@@ -9,8 +9,8 @@ class LandingPage extends React.Component {
             <br></br>
             <h5>DISCLAIMER</h5>
             <br></br>
-            {/* <p>This is a demo site and the products are not on sale</p> */}
-            <p>Please be informed that this is a demo site and the products are not on sale.
+            <p>This is a demo site and the products are not on sale
+              {/* <p>Please be informed that this is a demo site and the products are not on sale. */}
               <br></br>
             The products displayed are not real and do not represent the actual cost of the products</p>
             {/* <p>Please be aware that do not store any information that you provide during this demo</p> */}

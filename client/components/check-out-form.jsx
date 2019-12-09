@@ -15,7 +15,7 @@ class CheckOutForm extends React.Component {
         creditCard: '',
         address: ''
       },
-      blankSubmit: '',
+      blankSubmit: false,
       modalOpen: true
     };
 
@@ -50,7 +50,6 @@ class CheckOutForm extends React.Component {
     } else if (!addressData) {
       valid = false;
     }
-
     return valid;
   }
 
@@ -102,8 +101,6 @@ class CheckOutForm extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let contact = this.state;
-    // console.log(this.formValid(this.state));
-    // console.log(this.formValid(event));
 
     if (this.formValid(this.state)) {
       this.props.placeOrder(contact, this.props.cart);
@@ -120,9 +117,10 @@ class CheckOutForm extends React.Component {
         },
         blankSubmit: ''
       });
-      this.props.setView('confirmation', {});
+      this.props.cartView('confirmation', {});
     } else {
-      this.setState({ blankSubmit: 'Please fill out all the required fields.' });
+      // this.setState({ blankSubmit: 'Please fill out all the required fields.' });
+      this.setState({ blankSubmit: true });
     }
   }
 
@@ -143,8 +141,6 @@ class CheckOutForm extends React.Component {
           <ModalHeader>
               Alert !<br></br>
               Please do not enter your personal information.
-            {/* Please be informed that details provided here are not stored in any systems.
-              However, please refrain from providing personal information in this page. */}
           </ModalHeader>
           <ModalFooter>
             <Button onClick={this.toggleModal} color="info">OK</Button>
@@ -216,6 +212,9 @@ class CheckOutForm extends React.Component {
             <div>
               <button type="submit" className="placeOrderButton"
                 onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Order</button>
+              {/* onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : this.props.deleteCart(), this.props.cartView('confirmation', {}); }}>Place Order</button> */}
+              {/* onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : e => {this.props.deleteCart, this.props.cartView('confirmation', {}); }}}>Place Order</button> */}
+              {/* </div>onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : (e => {this.props.deleteCart(), this.props.cartView('confirmation', {}); })}}>Place Order</button> */}
               <div className="invalidInput">{this.state.blankSubmit}</div>
             </div>
 

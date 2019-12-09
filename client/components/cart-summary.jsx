@@ -33,7 +33,7 @@ function CartSummary(props) {
     <div className= "container">
       <button type="button" className="btn btn-outline-info"
         onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
-      <h2 className="myCart">Cart Summary</h2>
+      <p className="myCart">Cart Summary</p>
       <div>{items}</div>
       <div className="totalPrice"><h5>Order Total: ${(total / 100).toFixed(2)}</h5></div>
       <button type="button" className="checkoutButton"
