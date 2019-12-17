@@ -116,11 +116,10 @@ class CheckOutForm extends React.Component {
           address: ''
         },
         blankSubmit: ''
-      });
+      }, this.props.deleteCart());
       this.props.cartView('confirmation', {});
     } else {
-      // this.setState({ blankSubmit: 'Please fill out all the required fields.' });
-      this.setState({ blankSubmit: true });
+      this.setState({ blankSubmit: 'Please fill out all the required fields.' });
     }
   }
 
@@ -146,16 +145,17 @@ class CheckOutForm extends React.Component {
             <Button onClick={this.toggleModal} color="info">OK</Button>
           </ModalFooter>
         </Modal>
-        <h4 className="checkoutTitle">Checkout</h4>
+
+        <div>
+          <button type="button" className="backToCatalogButtonCheckout"
+            onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
+        </div>
         <div className="checkoutPage">
-          <div>
-            <button type="button" className="btn btn-outline-info"
-              onClick={() => this.props.cartView('catalog', {})}>Back to Catalog</button>
-          </div>
           <br></br>
+          <p className="checkoutTitle">Checkout</p>
           <p className="orderTotal">Order Total ${(this.cartTotalPrice() / 100).toFixed(2)}</p>
 
-          <form onClick={this.handleSubmit}>
+          <form onSubmit={this.handleSubmit}>
             <div className="form-group form">
               <label htmlFor="firstName">First Name</label>
               <input id="firstName"
@@ -210,11 +210,7 @@ class CheckOutForm extends React.Component {
             </div>
 
             <div>
-              <button type="submit" className="placeOrderButton"
-                onClick={() => { this.props.deleteCart(); this.props.cartView('confirmation', {}); }}>Place Order</button>
-              {/* onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : this.props.deleteCart(), this.props.cartView('confirmation', {}); }}>Place Order</button> */}
-              {/* onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : e => {this.props.deleteCart, this.props.cartView('confirmation', {}); }}}>Place Order</button> */}
-              {/* </div>onClick={() => { this.state.blankSubmit === false ? alert('Please fill all the required fields') : (e => {this.props.deleteCart(), this.props.cartView('confirmation', {}); })}}>Place Order</button> */}
+              <button type="submit" className="placeOrderButton">Place Order</button>
               <div className="invalidInput">{this.state.blankSubmit}</div>
             </div>
 

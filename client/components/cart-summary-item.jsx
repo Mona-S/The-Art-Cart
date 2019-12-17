@@ -61,15 +61,12 @@ class CartSummaryItem extends React.Component {
         <div className="cartSummary">
           <h5 className="card-title productName">{this.props.name}</h5>
           <img src={this.props.image} alt="product1" className="summaryImage"/>
-          {/* <i className="fas fa-plus-square"></i> */}
           <p className="card-data">Item Price ${(this.props.price / 100).toFixed(2)}</p>
+
           <div className="summaryButton">
             <button type="button" className="btn btn-success" onClick={this.increment}>+</button>
-            {/* <p className="card-text"> {this.props.count}</p> */}
             <p className="card-box">  {this.state.count}</p>
-            {/* <i className="fas fa-minus-square"></i> */}
             <button type="button" className="btn btn-danger" onClick={this.decrement}>-</button>
-
           </div>
           <br></br>
           <div className="updatedeleteButton">
@@ -77,8 +74,6 @@ class CartSummaryItem extends React.Component {
             <div className="divider"></div>
             <button type="button" className="btn btn-danger deleteButton" onClick={this.toggleModal}>Delete</button>
           </div>
-          {/* <p className="card-data">SubTotal $ {parseFloat((this.props.price / 100).toFixed(2) * (this.props.count))}</p> */}
-          {/* <p className="card-data">{this.props.shortDescription}</p> */}
 
           <Modal isOpen={this.state.modalOpen}>
             <ModalHeader>
@@ -100,34 +95,3 @@ class CartSummaryItem extends React.Component {
 }
 
 export default CartSummaryItem;
-
-// function CartSummaryItem(props) {
-//   return (
-//     <React.Fragment>
-//       <div className="cartSummary">
-//         <img src={props.image} alt="product1" className="summaryImage"/>
-//         <h4 className="card-title productName">{props.name}</h4>
-//         <i className="fas fa-plus-square"></i>
-//         <p className="card-text"> {(props.count)}</p>
-//         <button type="button" className="btn btn-info updateButton">Update</button>
-//         <i className="fas fa-minus-square"></i>
-//         <p className="card-text">Item Price ${(props.price / 100).toFixed(2)}</p>
-//         <p className="card-text">Total Price for item $ {(props.price / 100).toFixed(2) * (props.count)}</p>
-//         <p className="card-text">{props.shortDescription}</p>
-//       </div>
-//     </React.Fragment>
-
-//   );
-
-// return (
-//     <React.Fragment>
-//       <div className="cartSummary">
-//         <img src={this.props.image} alt="product1" className="summaryImage"/>
-//         <h4 className="card-title productName">{this.props.name}</h4>
-//         <p className="card-text">Quantity {(this.props.count)}</p>
-//         <p className="card-text">Item Price ${(this.props.price / 100).toFixed(2)}</p>
-//         <p className="card-text">Total Price for item $ {(this.props.price / 100).toFixed(2) * (this.props.count)}</p>
-//         <p className="card-text">{this.props.shortDescription}</p>
-//       </div>
-//     </React.Fragment>
-//   );

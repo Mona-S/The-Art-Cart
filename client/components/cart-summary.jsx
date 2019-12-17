@@ -6,9 +6,9 @@ function CartSummary(props) {
     return (
       <React.Fragment>
         <div className="emptyCart">
-          <button type="button" className="btn btn-info"
+          <button type="button" className="backToCatalogButtonEmptyCart"
             onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
-          <h3 className="emptyCartModal">Your Cart is Empty</h3>
+          <p className="emptyCartModal">Your Cart is Empty</p>
         </div>
       </React.Fragment>
     );
@@ -24,18 +24,18 @@ function CartSummary(props) {
         updateCart = {props.updateCart}
         getCartItems = {props.getCartItems}
         deleteFromCart = {props.deleteFromCart}/>
-      // shortDescription={item.short_description}/>
     );
   });
 
   const total = cartTotalPrice(props);
   return (
     <div className= "container">
-      <button type="button" className="btn btn-outline-info"
+
+      <button type="button" className="backToCatalogButton"
         onClick={() => props.cartView('catalog', {})}>Back to Catalog</button>
       <p className="myCart">Cart Summary</p>
       <div>{items}</div>
-      <div className="totalPrice"><h5>Order Total: ${(total / 100).toFixed(2)}</h5></div>
+      <div className="totalPrice"><p>Order Total: ${(total / 100).toFixed(2)}</p></div>
       <button type="button" className="checkoutButton"
         onClick={() => props.cartView('checkout', {})}>Checkout</button>
     </div>

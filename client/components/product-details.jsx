@@ -1,5 +1,4 @@
 import React from 'react';
-import Carousel from './carousel';
 import { Button, Modal, ModalHeader, ModalFooter } from 'reactstrap';
 
 class ProductDetails extends React.Component {
@@ -27,25 +26,20 @@ class ProductDetails extends React.Component {
       return (
         <div key = {this.state.product.id} className="container itemDetails">
 
-          <button type="button" className="btn btn-outline-info"
+          <button type="button" className="backToCatalogButton"
             onClick={() => this.props.productView('catalog', {})}>Back to Catalog</button>
 
           <div className="rowImage">
-            <div className="col-12 col-md-8">
-              {/* <img src={this.state.product.image} className="card-img" alt="OneItem" /> */}
-              <Carousel products={ this.state.product}></Carousel>
-
+            <div className="detailContainer">
+              <img src={this.state.product.image} className="detailImage" alt="OneItem" />
             </div>
 
-            {/* <div className="col-6 col-md-4 short rowProductDetails"> */}
             <div className="short rowProductDetails">
-              {/* <p className="card-text badge badge-info">${(this.state.product.price / 100).toFixed(2)}</p> */}
               <p className="card-title productTitle">{this.state.product.name}</p>
               <b>${(this.state.product.price / 100).toFixed(2)}</b>
               <br></br>
-              <br></br>
               <p className="cardtextProduct">{this.state.product.short_description}</p>
-              <button type="button" className="add-to-cart-button" onClick={() => { this.toggleModal(); this.props.cartAdd(this.state.product.id); }}>Add to Cart </button>
+              <button type="button" className="addToCartButton" onClick={() => { this.toggleModal(); this.props.cartAdd(this.state.product.id); }}>Add to Cart </button>
             </div>
 
           </div>

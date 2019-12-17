@@ -9,12 +9,9 @@ class LandingPage extends React.Component {
             <br></br>
             <h5>DISCLAIMER</h5>
             <br></br>
-            <p>This is a demo site and the products are not on sale
-              {/* <p>Please be informed that this is a demo site and the products are not on sale. */}
-              <br></br>
-            The products displayed are not real and do not represent the actual cost of the products</p>
-            {/* <p>Please be aware that do not store any information that you provide during this demo</p> */}
-            <p>Please click I Agree to continue  </p>
+            <p className="disclaimerNote">This website is for demonstration purposes only.</p>
+            <p className="disclaimerNote">No information will be stored and the products displayed are not real</p>
+            <p className="disclaimerNote">Please click I Agree to continue  </p>
             <button type="button" className="btn btn-info agreeButton"
               onClick={() => this.props.cartView('catalog', {})}>I Agree</button></div>
         </div>

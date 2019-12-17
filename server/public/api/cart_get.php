@@ -20,10 +20,6 @@ $query = "SELECT a.productID, a.count, a.price, b.name, b.short_description, c.i
 FROM cartItems a, products b, images c 
 WHERE a.productID = b.id AND b.id = c.product_id AND a.cartID = $cartId";
 
-// $query = "SELECT cartItems.count, products.id, products.name, products.price, products.image, products.shortDescription FROM `cartItems`
-//           JOIN `products` ON cartItems.productID = products.id";
-
-
 $result = mysqli_query($conn, $query);
 $productData = [];
 

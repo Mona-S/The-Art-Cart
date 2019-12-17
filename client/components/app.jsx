@@ -38,12 +38,10 @@ export default class App extends React.Component {
   getCartLength() {
     let cart = this.state.cart;
     let cartArray = null;
-    // if (cart.length > 0) {
     for (let i = 0; i < cart.length; i++) {
       cartArray += parseInt(cart[i].count);
     }
     this.setState({ cartLength: cartArray });
-    // }
   }
 
   getCartItems() {
@@ -52,10 +50,6 @@ export default class App extends React.Component {
       .then(data => {
         this.setState({ cart: data }, this.getCartLength);
       })
-      // return data;
-      // .then(cart => {
-      //   this.setState({ cart }, () => this.getCartLength(cart));
-      // })
       .catch(error => console.error('Error:', error));
   }
 
@@ -73,8 +67,6 @@ export default class App extends React.Component {
     };
 
     fetch('/api/cart.php', req)
-    // .then(response => { this.getCartItems(); });
-    // .then(response => response.json())
       .then(() => {
         const allData = this.state.cart.concat(productId);
         this.setState({ cart: allData });

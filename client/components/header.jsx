@@ -8,9 +8,7 @@ function Header(props) {
         <img src="/images/shoponline logo.png" className="logo" alt="logo"></img>
         <div className="cart"> {props.cartItems}
           <i onClick={() => props.cartView('cart', {})} className="fas fa-shopping-cart"></i>
-
         </div>
-
       </div>
     </React.Fragment>
   );

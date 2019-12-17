@@ -20,11 +20,6 @@ if($id < 1){
 
 if($newCount == 0){
     $query = "DELETE FROM cartItems WHERE productID = {$id}";
-    // $result = mysqli_query($conn, $query);
-
-    //     if(!$result){
-    //         throw new Exception("query error: ". $result);
-    //     }
 
     } else {
         $query  = "UPDATE `cartItems` SET `cartItems`.`count` = {$newCount} 
@@ -37,11 +32,7 @@ if(!$result2){
     throw new Exception("query error: ". $result2);
 }
     
-
 $commit = 'COMMIT';
 mysqli_query($conn, $commit);
-
-
-
 
 ?>

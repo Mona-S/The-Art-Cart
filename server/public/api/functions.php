@@ -16,17 +16,10 @@ function startup() {
     header('Content-Type: application/json');
 }
 
-
 function getBodyData(){
     $getBody = file_get_contents('php://input');
     $phpArray = json_decode($getBody,true); //,true//
     return $phpArray;
 }
-
-// function getBodyData() {
-//     $result = file_get_contents('php://input');
-//     $result = json_decode($result);
-//     return json_encode($result);
-// }
 
 ?>

@@ -11,16 +11,6 @@ if(!INTERNAL){
 $getBody = getBodyData();
 $id = intval($getBody["id"]);
 
-// echo($id);
-
-// if(gettype($id) === "string"){ //use isnumeric//
-//     throw new Exception('id should be a number');
-// } 
-// if(intval($id) <= 0){
-//     throw new Exception('id should be greater than 0');
-// } 
-
-
 if(empty($_SESSION['cartId'])){
     $cartID = false;
 }
@@ -90,7 +80,5 @@ if(mysqli_affected_rows($conn) < 1){
     $commit = 'COMMIT';
     mysqli_query($conn, $commit);
 }
-
-
 
 ?>
