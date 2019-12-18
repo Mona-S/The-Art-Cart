@@ -30,8 +30,8 @@
     background-color: white;
     color: black;
     border-radius: 20px;
-    width: 40%;
-    height: 40%;
+    width: 36%;
+    height: 36%;
     margin: 0 auto;
     border: 1px solid black ;
     text-align: center;
@@ -49,7 +49,7 @@
     height: 84vh;
     width: 100vw;
     background-repeat: no-repeat;
-
+    background-size: cover;
 }
 
 .orderNumber {
@@ -71,10 +71,10 @@
 
 .emptyCart {
     background-image:url("/images/theme-main1.jpg");
-    height: 82vh;
+    height: 84vh;
     width: 100vw;
     background-repeat: no-repeat;
-    
+    background-size: cover;
 }
 
 .emptyCartModal {
@@ -187,7 +187,7 @@ body {
 }
 
 .cardtextProduct {
-    width: 40vw;
+    width: 35vw;
     margin-top: 10px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 20px;
@@ -236,7 +236,7 @@ body {
     font-size: 27px;
     text-align: center;
     margin-top: 5px;
-    width: 78vw;
+    width: 100%;
     font-family: 'Ubuntu', sans-serif;
 }
 
@@ -432,7 +432,7 @@ body {
         width: 60vw;
         height: 50vh;
         margin:10px;
-        margin-left: 20vw;
+        margin-left: 15vw;
     } 
     
     .summaryImage {
@@ -877,11 +877,6 @@ body {
         width: 80%;
         height: 51vh;
         margin-left:10%;
-    }
-
-    .myCart{
-        font-size: 24px;
-        margin-left: 20px
     }
 
     .totalPrice {
