@@ -30,8 +30,8 @@
     background-color: white;
     color: black;
     border-radius: 20px;
-    width: 36%;
-    height: 36%;
+    width: 40%;
+    height:42%;
     margin: 0 auto;
     border: 1px solid black ;
     text-align: center;
@@ -103,7 +103,7 @@ body {
 
 .logo {
     float: left; 
-    height: 135px; 
+    height: 123px; 
 }
 
 .listItem {
